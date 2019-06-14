@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        min-width: 350px;
+        width: auto;
+        padding: 10px;
+      }
+      #error {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        padding: 5px 10px;
+        border-radius: 3px;
+        margin-bottom: 10px;
+      }
+
+      input {
+        display: block;
+        width: 350px;
+        padding: .375rem .75rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      }
+
+      a {
+        cursor: pointer;
+        color: #007bff;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div id = "input-div">
+      <input autofocus id = "field"/>
+      <br/>
+      <em>Copied to clipboard!</em>
+    </div>
+    
+    <div id = "error">
+    </div>
+
+    <div id = "see-more" style = "display: none;">
+      <a id = "see-more-button"> See more </a>
+      <div id = "see-more-content" style = "display: none;">
+        Make sure that the modal with task details is opened <br/>
+        OR <br/>
+        You are into task details page (you should see <em>task_id, dag_id and execution_date</em> in the URL)
+      </div>
+    </div>
+
+
+    <script src="popup.js"></script>
+  </body>
+</html>
