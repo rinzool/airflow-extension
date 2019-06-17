@@ -44,7 +44,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
     data.execution_date = params.execution_date
   }
   // Or get them from modal info
-  else if(params.dag_id && document.getElementsByTagName("body")[0].getAttribute("class").match(/modal-open/ig)) {
+  else if(params.dag_id && document.getElementsByTagName("body")[0].getAttribute("class") && document.getElementsByTagName("body")[0].getAttribute("class").match(/modal-open/ig)) {
     data.dag_id = params.dag_id
     data.task_id = document.getElementById("task_id").innerText
     data.execution_date = document.getElementById("execution_date").innerText
