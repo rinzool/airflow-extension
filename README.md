@@ -16,19 +16,26 @@ Clone repository where you want it, for example in your home.
 git clone https://github.com/rinzool/airflow-run-extension.git ~/
 ```
 
-Build package 
-```console 
+Build package
+```console
 ./build.sh
 ```
 
-### Chrome 
-Go to _Open chrome > More Tools > Extensions_
+### Chrome
+On Chrome, go to `chrome://extensions/`
 
 Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top left, and choose this directory.
 
-### Firefox 
+### Firefox
 
-TODO
+On Firefox, go to `about:debugging`
+
+Accept checkbox _Enable add-on debugging_, then click on _Load Temporary Add-on_ on the top right.
+
+Select the file `airflow-run-extension/firefox/manifest.json`
+
+
+
 
 ## Use
 
@@ -39,7 +46,7 @@ Then you can directly copy the command to clipboard since it is selected.
 > For **Chrome** users, the command is directly copied to clipboard
 
 
-## Updates 
+## Updates
 
 To get updated :
 * `git pull`
