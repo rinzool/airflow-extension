@@ -16,9 +16,19 @@ Clone repository where you want it, for example in your home.
 git clone https://github.com/rinzool/airflow-run-extension.git ~/
 ```
 
+Build package 
+```console 
+./build.sh
+```
+
+### Chrome 
 Go to _Open chrome > More Tools > Extensions_
 
 Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top left, and choose this directory.
+
+### Firefox 
+
+TODO
 
 ## Use
 
@@ -29,7 +39,8 @@ When you are on Airflow user interface, display the modal of a task or open task
 
 To get updated :
 * `git pull`
-* Open _chrome > More Tools > Extensions_ and click on the reload button (circle arrow) in the _Airflow Extension_ section.
+* `./build.sh`
+* Reload extension on your browser
 
 ## Author
 

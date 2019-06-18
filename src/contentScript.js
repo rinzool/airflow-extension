@@ -32,7 +32,12 @@ function getJsonFromUrl() {
   return result;
 }
 
-chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
+
+/**
+ * Get dag_id, task_id and execution_id and return them
+ * If they are not found, return {success: false}
+ */
+function getAirflowData() {
   // Get params
   let params = getJsonFromUrl();
   let data = {success: true}
@@ -53,5 +58,12 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
     data.success = false;
   }
 
-  sendResponse(data);
+  return data;
+}
+
+// chrome.runtime.onMessage.addListener
+// BROWSER_LISTENER will be replaced by browser listener function during building phase
+// See "build.sh" for more information
+chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
+  sendResponse(getAirflowData());
 });

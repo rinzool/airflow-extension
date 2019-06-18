@@ -22,12 +22,6 @@ const copyToClipboard = str => {
   }
 };
 
-// Inject content script
-chrome.tabs.executeScript({
-  file: 'contentScript.js'
-});
-
-
 // Display/hide html tag
 function show(tag) {
   tag.setAttribute("style", "display: block;");
@@ -45,34 +39,30 @@ let seeMore = document.getElementById("see-more");
 let seeMoreButton = document.getElementById("see-more-button");
 let seeMoreContent = document.getElementById("see-more-content");
 
-// Trigger content script
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, {}, function(response) {
+function processContentResponse(response) {
+  if(response && response.success) {
+    show(inputDiv);
+    hide(seeMore);
+    hide(error);
 
-    if(response && response.success) {
-      show(inputDiv);
-      hide(seeMore);
-      hide(error);
+    // Update value
+    input.value = `airflow run ${response.dag_id} ${response.task_id} ${response.execution_date}`;
+    
+    // Focus, select and copy to clipboard the value
+    copyToClipboard(input.value);
+    input.focus();
+    input.select();
 
-      // Update value
-      input.value = `airflow run ${response.dag_id} ${response.task_id} ${response.execution_date}`;
-      
-      // Focus, select and copy to clipboard the value
-      copyToClipboard(input.value);
-      input.focus();
-      input.select();
+  }
+  else {
+    hide(seeMoreContent);
+    show(error);
+    show(seeMore);
+    hide(inputDiv);
 
-    }
-    else {
-      hide(seeMoreContent);
-      show(error);
-      show(seeMore);
-      hide(inputDiv);
-
-      error.innerText = "Unable to generate airflow run command"
-    }
-  });
-});
+    error.innerText = "Unable to generate airflow run command"
+  }
+}
 
 seeMoreButton.addEventListener('click', function(){show(seeMoreContent)})
 
