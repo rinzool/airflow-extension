@@ -30,7 +30,7 @@ Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top l
 
 On Firefox, go to `about:debugging`
 
-Accept checkbox _Enable add-on debugging_, then click on _Load Temporary Add-on_ on the top right.
+Click on _Load Temporary Add-on_ on the top right.
 
 Select the file `airflow-run-extension/firefox/manifest.json`
 
@@ -48,7 +48,7 @@ Then you can directly copy the command to clipboard since it is selected.
 
 ## Updates
 
-To get updated :
+To get last updates :
 * `git pull`
 * `./build.sh`
 * Reload extension on your browser
