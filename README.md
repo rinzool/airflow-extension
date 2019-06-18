@@ -33,4 +33,4 @@ To get updated :
 
 ## Author
 
-[Quentin Nambot](quentin.nambot@grenoble-inp.org)
+[Quentin Nambot](mailto:quentin.nambot@grenoble-inp.org)
