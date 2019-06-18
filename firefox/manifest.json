@@ -1,0 +1,23 @@
+{
+
+  "manifest_version": 2,
+  "name": "Airflow Extension",
+  "version": "1.1.0",
+
+  "description": "Automatically generate airflow run command",
+  "homepage_url": "https://github.com/rinzool/airflow-run-extension",
+
+  "icons": {
+    "128": "images/logo.png"
+  },
+
+  "permissions":[
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_icon": "images/logo.png",
+    "default_title": "Airflow Run",
+    "default_popup": "popup.html"
+  }
+}

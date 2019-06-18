@@ -1,0 +1,4 @@
+chrome/**/contentScript.js
+chrome/**/popup.*
+firefox/**/contentScript.js
+firefox/**/popup.*
