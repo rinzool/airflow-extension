@@ -32,7 +32,11 @@ TODO
 
 ## Use
 
-When you are on Airflow user interface, display the modal of a task or open task details and then click on the extension. It will automatically get *dag_id, task_id* and *execution_date* from the page DOM and copy it to your clipboard.
+When you are on Airflow user interface, display the modal of a task or open task details and then click on the extension. It will automatically get *dag_id, task_id* and *execution_date* from the page DOM and generate `airflow run dag_id task_id execution_date`.
+
+Then you can directly copy the command to clipboard since it is selected.
+
+> For **Chrome** users, the command is directly copied to clipboard
 
 
 ## Updates 

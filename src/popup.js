@@ -31,6 +31,12 @@ function hide(tag) {
   tag.setAttribute("style", "display: none;");
 }
 
+
+var isFirefox = typeof InstallTrigger !== 'undefined';
+if(isFirefox) {
+  hide(document.getElementById("copied"))
+}
+
 // Get main elements
 let input = document.getElementById('field');
 let inputDiv = document.getElementById('input-div');

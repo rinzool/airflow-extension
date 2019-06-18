@@ -61,9 +61,9 @@ function getAirflowData() {
   return data;
 }
 
-// chrome.runtime.onMessage.addListener
-// BROWSER_LISTENER will be replaced by browser listener function during building phase
-// See "build.sh" for more information
-chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
+var isFirefox = typeof InstallTrigger !== 'undefined';
+var currentBrowser = isFirefox ? browser : chrome;
+
+currentBrowser.runtime.onMessage.addListener( (request, sender, sendResponse) => {
   sendResponse(getAirflowData());
 });

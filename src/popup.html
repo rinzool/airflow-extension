@@ -1,55 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-      body {
-        min-width: 350px;
-        width: auto;
-        padding: 10px;
-      }
-      #error {
-        color: #721c24;
-        background-color: #f8d7da;
-        border-color: #f5c6cb;
-        padding: 5px 10px;
-        border-radius: 3px;
-        margin-bottom: 10px;
-      }
-
-      input {
-        display: block;
-        width: 350px;
-        padding: .375rem .75rem;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        border-radius: .25rem;
-        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-      }
-
-      a {
-        cursor: pointer;
-        color: #007bff;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href = "popup.css"/>
   </head>
   <body>
-    <div id = "input-div">
-      <input autofocus id = "field"/>
+    <div id = "input-div" class = "container">
+      <input autofocus class = "form-control" id = "field"/>
       <br/>
-      <em>Copied to clipboard!</em>
+      <em id = "copied">Copied to clipboard!</em>
     </div>
     
-    <div id = "error">
+    <div id = "error" class = "alert alert-danger">
     </div>
 
-    <div id = "see-more" style = "display: none;">
+    <div id = "see-more" style = "display: none;" class = "container">
       <a id = "see-more-button"> See more </a>
       <div id = "see-more-content" style = "display: none;">
         Make sure that the modal with task details is opened <br/>
