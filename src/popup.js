@@ -39,6 +39,7 @@ if(isFirefox) {
 
 // Get main elements
 let input = document.getElementById('field');
+let inputName = document.getElementById('field-name');
 let inputDiv = document.getElementById('input-div');
 let error = document.getElementById("error");
 let seeMore = document.getElementById("see-more");
@@ -54,10 +55,11 @@ function processContentResponse(response) {
     // Update value
     if(response.run) {
       input.value = `airflow run ${response.dag_id} ${response.task_id} ${response.execution_date}`;
+      inputName.innerText = "Airflow run" 
     }
     else if(response.log) {
-      input.value = "TODO"
-      console.log(response)
+      inputName.innerText = "Running command" 
+      input.value = response.command
     }
     
     // Focus, select and copy to clipboard the value
@@ -72,10 +74,10 @@ function processContentResponse(response) {
     show(seeMore);
     hide(inputDiv);
 
-    error.innerText = "Unable to generate any command"
+    error.innerText = data.error ? data.error : "Unable to generate any command";
   }
 }
 
-seeMoreButton.addEventListener('click', function(){show(seeMoreContent)})
+seeMoreButton.addEventListener('click', function(){show(seeMoreContent)});
 
 

@@ -44,10 +44,10 @@ function getAirflowData() {
   let data = {success: true}
 
   if(url.match(/airflow\/log/)) {
-    getLogData(data)
+    getLogData(data);
   }
   else {
-    getRunData(data, params)
+    getRunData(data, params);
   }
 
   return data;
@@ -58,26 +58,37 @@ function getAirflowData() {
  * If they are not found, return {success: false}
  */
 function getRunData(data, params) {
-  data.run = true
+  data.run = true;
   // Get data from url
   if(params.dag_id && params.task_id && params.execution_date) {
-    data.dag_id = params.dag_id
-    data.task_id = params.task_id
-    data.execution_date = params.execution_date
+    data.dag_id = params.dag_id;
+    data.task_id = params.task_id;
+    data.execution_date = params.execution_date;
   }
   // Or get them from modal info
   else if(params.dag_id && document.getElementsByTagName("body")[0].getAttribute("class") && document.getElementsByTagName("body")[0].getAttribute("class").match(/modal-open/ig)) {
-    data.dag_id = params.dag_id
-    data.task_id = document.getElementById("task_id").innerText
-    data.execution_date = document.getElementById("execution_date").innerText
+    data.dag_id = params.dag_id;
+    data.task_id = document.getElementById("task_id").innerText;
+    data.execution_date = document.getElementById("execution_date").innerText;
   }
   else {
     data.success = false;
+    data.error = "Unable to generate airflow run command";
   }
 }
 
 function getLogData(data) {
-  data.log = true
+  data.log = true;
+  let logs = document.getElementsByTagName("pre")[0].innerText;
+  let matchResult = logs.match(/Running\ command:\ (?<command>.*)/);
+
+  if(matchResult) {
+    data.command = matchResult.groups.command;
+  }
+  else {
+    data.success = false;
+    data.error = "Unable to fetch Running Command";
+  }
 }
 
 
