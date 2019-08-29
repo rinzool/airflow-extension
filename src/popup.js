@@ -59,7 +59,8 @@ function processContentResponse(response) {
     }
     else if(response.log) {
       inputName.innerText = "Running command" 
-      input.value = response.command
+      console.log(response)
+      input.value = response.command.match(/sudo\ -u/) ? response.command.match(/sudo\ -u [^\ ]*\ *(?<command>.*)/).groups.command : response.command
     }
     
     // Focus, select and copy to clipboard the value
