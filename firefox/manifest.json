@@ -4,7 +4,7 @@
   "name": "Airflow Extension",
   "version": "1.1.0",
 
-  "description": "Automatically generate airflow run command",
+  "description": "Automatically generate commands from airflow UI",
   "homepage_url": "https://github.com/rinzool/airflow-run-extension",
 
   "icons": {

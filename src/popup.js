@@ -52,7 +52,13 @@ function processContentResponse(response) {
     hide(error);
 
     // Update value
-    input.value = `airflow run ${response.dag_id} ${response.task_id} ${response.execution_date}`;
+    if(response.run) {
+      input.value = `airflow run ${response.dag_id} ${response.task_id} ${response.execution_date}`;
+    }
+    else if(response.log) {
+      input.value = "TODO"
+      console.log(response)
+    }
     
     // Focus, select and copy to clipboard the value
     copyToClipboard(input.value);
@@ -66,7 +72,7 @@ function processContentResponse(response) {
     show(seeMore);
     hide(inputDiv);
 
-    error.innerText = "Unable to generate airflow run command"
+    error.innerText = "Unable to generate any command"
   }
 }
 

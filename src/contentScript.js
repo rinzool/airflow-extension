@@ -34,14 +34,31 @@ function getJsonFromUrl() {
 
 
 /**
- * Get dag_id, task_id and execution_id and return them
- * If they are not found, return {success: false}
+ * Get data from content page
+ * May be: airflow run data or log data
  */
 function getAirflowData() {
   // Get params
+  let url = location.href
   let params = getJsonFromUrl();
   let data = {success: true}
 
+  if(url.match(/airflow\/log/)) {
+    getLogData(data)
+  }
+  else {
+    getRunData(data, params)
+  }
+
+  return data;
+}
+
+/**
+ * Get dag_id, task_id and execution_id and return them
+ * If they are not found, return {success: false}
+ */
+function getRunData(data, params) {
+  data.run = true
   // Get data from url
   if(params.dag_id && params.task_id && params.execution_date) {
     data.dag_id = params.dag_id
@@ -57,9 +74,12 @@ function getAirflowData() {
   else {
     data.success = false;
   }
-
-  return data;
 }
+
+function getLogData(data) {
+  data.log = true
+}
+
 
 var isFirefox = typeof InstallTrigger !== 'undefined';
 var currentBrowser = isFirefox ? browser : chrome;
