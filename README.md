@@ -1,6 +1,6 @@
 # Airflow Run Extension
 
-Chrome Extension automatically generating "Airflow run" command from Airflow UI.
+Chrome Extension automatically generating "Airflow run" and other commands from Airflow UI.
 
 
 ## Demo
@@ -39,12 +39,19 @@ Select the file `airflow-run-extension/firefox/manifest.json`
 
 ## Use
 
-When you are on Airflow user interface, display the modal of a task or open task details and then click on the extension. It will automatically get *dag_id, task_id* and *execution_date* from the page DOM and generate `airflow run dag_id task_id execution_date`.
+On Airflow user interface, click on extension symbole and a command will be generated automatically if possible.
 
 Then you can directly copy the command to clipboard since it is selected.
 
 > For **Chrome** users, the command is directly copied to clipboard
 
+### Airflow run 
+
+Display the modal of a task or open task details and then click on the extension. It will automatically get *dag_id, task_id* and *execution_date* from the page DOM and generate `airflow run dag_id task_id execution_date`.
+
+### Running Command
+
+On the log page of a task, the extension will fetch the `Running command` called by the task.
 
 ## Updates
 
