@@ -55,7 +55,7 @@ It will automatically generate `airflow run dag_id task_id execution_date`.
 
 ### Running Command
 
-On the log page of a task, the extension will fetch the `Running command` called by the task.
+On the log page of a task, the extension will fetch the `Running command` called by the task if it exists.
 
 ## Updates
 

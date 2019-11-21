@@ -75,7 +75,7 @@ function processContentResponse(response) {
     show(seeMore);
     hide(inputDiv);
 
-    error.innerText = data.error ? data.error : "Unable to generate any command";
+    error.innerText = response && response.error ? response.error : "Unable to generate any command";
   }
 }
 

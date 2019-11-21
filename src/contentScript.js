@@ -44,7 +44,7 @@ function getAirflowData() {
   let data = {success: true}
 
   if(url.match(/airflow\/log/)) {
-    getLogData(data);
+    getLogData(data, params);
   }
   else {
     getRunData(data, params);
@@ -77,7 +77,7 @@ function getRunData(data, params) {
   }
 }
 
-function getLogData(data) {
+function getLogData(data, params) {
   data.log = true;
   let logs = document.getElementsByTagName("pre")[0].innerText;
   let matchResult = logs.match(/Running\ command:\ (?<command>.*)/);
@@ -86,8 +86,8 @@ function getLogData(data) {
     data.command = matchResult.groups.command;
   }
   else {
-    data.success = false;
-    data.error = "Unable to fetch Running Command";
+    // If there is no running command we fetch `airflow run ...`
+    getRunData(data, params);
   }
 }
 
