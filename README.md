@@ -42,9 +42,7 @@ Then on Firefox, go to *add-ons* menu, choose _Install Add-on from file_ and sel
 
 On Airflow user interface, click on extension button and a command will be automatically generated if possible.
 
-Then you can directly copy the command to clipboard since it is already selected.
-
-> For **Chrome** users, the command is directly copied to clipboard
+Then you the command is directly copied to clipboard
 
 ### Airflow run 
 
