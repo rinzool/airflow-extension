@@ -2,8 +2,10 @@
 const successAlert = document.getElementById("success-alert");
 const dagsTextArea= document.getElementById("dags");
 
+var currentBrowser = typeof InstallTrigger !== 'undefined' ? browser : chrome;
+
 // Fetch stored dags
-chrome.storage.sync.get('dags', function(data) {
+currentBrowser.storage.sync.get('dags', function(data) {
   dagsTextArea.value = data.dags ? data.dags : '';
 })
 
@@ -13,7 +15,7 @@ function updateDags() {
   
   const dags = dagsTextArea.value.split(',').map(dag => dag.replace(' ', ''));
 
-  chrome.storage.sync.set({dags: dags}, function() {
+  currentBrowser.storage.sync.set({dags: dags}, function() {
     show(successAlert);
     setTimeout(function() {hide(successAlert);}, 2000);
   });

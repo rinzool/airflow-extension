@@ -1,4 +1,5 @@
-chrome.storage.sync.get('dags', function(data) {
+var currentBrowser = typeof InstallTrigger !== 'undefined' ? browser : chrome;
+currentBrowser.storage.sync.get('dags', function(data) {
   if(data.dags && document.getElementsByTagName("title")[0].innerText.match(/Airflow/ig)) {
     highlightDags(data.dags);
   }
