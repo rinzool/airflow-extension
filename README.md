@@ -30,12 +30,13 @@ Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top l
 
 ### Firefox
 
-On Firefox, go to `about:debugging`
+First, all source file must be zipped. Go to `./firefox/` and run 
 
-Click on _Load Temporary Add-on_ on the top right.
+```
+zip -r airflox-extension.zip *
+```
 
-Select the file `airflow-run-extension/firefox/manifest.json`
-
+Then on Firefox, go to *add-ons* menu, choose _Install Add-on from file_ and select `firefox/airflow-extension.zip`
 
 ## How to use it
 
