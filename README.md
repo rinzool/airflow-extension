@@ -30,20 +30,19 @@ Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top l
 
 ### Firefox
 
-On Firefox, go to `about:debugging`
+First, all source files must be zipped. Go to `./firefox/` and run 
 
-Click on _Load Temporary Add-on_ on the top right.
+```
+zip -r airflox-extension.zip *
+```
 
-Select the file `airflow-run-extension/firefox/manifest.json`
-
+Then on Firefox, go to *add-ons* menu, choose _Install Add-on from file_ and select `firefox/airflow-extension.zip`
 
 ## How to use it
 
 On Airflow user interface, click on extension button and a command will be automatically generated if possible.
 
-Then you can directly copy the command to clipboard since it is already selected.
-
-> For **Chrome** users, the command is directly copied to clipboard
+Then the command is directly copied to clipboard
 
 ### Airflow run 
 
@@ -57,12 +56,22 @@ It will automatically generate `airflow run dag_id task_id execution_date`.
 
 On the log page of a task, the extension will fetch the `Running command` called by the task if it exists.
 
+### Highlight DAGs
+
+It is possible to define a list of DAGs which will be highlighted on Airflow UI.
+
+Open extension popup and then click on "_Settings_".
+
+In _settings_ page, define a list of DAGs name in _csv_ (_e.g. dag1,dag2,dag3_) inthe textarea under "_List of dags to highlight_". 
+Then on Airflow UI _"DAGs"_ page, if a DAG name contains one of the name defined in option, the line will be highlighted.
+
 ## Updates
 
 To get last updates :
 * `git pull`
 * `./build.sh`
-* Reload extension on your browser
+* (**for firefox users only**) `cd firefox; zip -r firefox.zip *`
+* Reload extension on your browser or re-import it for firefox users
 
 ## Author
 

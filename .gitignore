@@ -1,4 +1,9 @@
 chrome/**/contentScript.js
 chrome/**/popup.*
+chrome/**/options.*
+chrome/highlightDags.js
+
 firefox/**/contentScript.js
 firefox/**/popup.*
+firefox/**/options.*
+firefox/highlightDags.js

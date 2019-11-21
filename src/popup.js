@@ -32,11 +32,6 @@ function hide(tag) {
 }
 
 
-var isFirefox = typeof InstallTrigger !== 'undefined';
-if(isFirefox) {
-  hide(document.getElementById("copied"))
-}
-
 // Get main elements
 let input = document.getElementById('field');
 let inputName = document.getElementById('field-name');
@@ -60,7 +55,7 @@ function processContentResponse(response) {
     else if(response.log) {
       inputName.innerText = "Running command" 
       console.log(response)
-      input.value = response.command.match(/sudo\ -u/) ? response.command.match(/sudo\ -u [^\ ]*\ *(?<command>.*)/).groups.command : response.command
+      input.value = response.command.match(/sudo\ -u/i) ? response.command.match(/sudo\ -u [^\ ]*\ *(.*)/)[1] : response.command
     }
     
     // Focus, select and copy to clipboard the value
@@ -80,5 +75,10 @@ function processContentResponse(response) {
 }
 
 seeMoreButton.addEventListener('click', function(){show(seeMoreContent)});
+
+document.getElementById("open-settings").addEventListener('click', function(){
+  var currentBrowser = typeof InstallTrigger !== 'undefined' ? browser : chrome;
+  currentBrowser.runtime.openOptionsPage(function() {})
+})
 
 

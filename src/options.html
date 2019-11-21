@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class = "container">
+      <div class = "row">
+        <div class = "col-xl">
+          <legend> Airflow Extension - Settings </legend>
+        </div>
+      </div>
+
+      <div class = "row">
+        <div class = "col-xl">
+
+          <div class = "form-group">
+            <label for="dags">List of dags to highlight:</label> 
+            <textarea class="form-control" id = "dags"></textarea>
+            <small class="form-text text-muted">Use <em>csv</em>. Ex: dag1,dag2,dag3</small>
+          </div>
+
+          <div style = "margin-bottom: 20px">
+            <button class = "btn btn-primary" id="validate">Update</button>
+          </div>
+
+          <div id = "success-alert" class="alert alert-info" style = "display: none" role="alert">
+            Options successfuly updated
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="options.js"></script>
+</html>
+

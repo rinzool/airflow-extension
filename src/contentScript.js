@@ -80,10 +80,10 @@ function getRunData(data, params) {
 function getLogData(data, params) {
   data.log = true;
   let logs = document.getElementsByTagName("pre")[0].innerText;
-  let matchResult = logs.match(/Running\ command:\ (?<command>.*)/);
+  let matchResult = logs.match(/Running\ command:\ (.*)/);
 
   if(matchResult) {
-    data.command = matchResult.groups.command;
+    data.command = matchResult[1];
   }
   else {
     // If there is no running command we fetch `airflow run ...`
