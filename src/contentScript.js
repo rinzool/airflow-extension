@@ -34,32 +34,63 @@ function getJsonFromUrl() {
 
 
 /**
- * Get dag_id, task_id and execution_id and return them
- * If they are not found, return {success: false}
+ * Get data from content page
+ * May be: airflow run data or log data
  */
 function getAirflowData() {
   // Get params
+  let url = location.href
   let params = getJsonFromUrl();
   let data = {success: true}
 
-  // Get data from url
-  if(params.dag_id && params.task_id && params.execution_date) {
-    data.dag_id = params.dag_id
-    data.task_id = params.task_id
-    data.execution_date = params.execution_date
-  }
-  // Or get them from modal info
-  else if(params.dag_id && document.getElementsByTagName("body")[0].getAttribute("class") && document.getElementsByTagName("body")[0].getAttribute("class").match(/modal-open/ig)) {
-    data.dag_id = params.dag_id
-    data.task_id = document.getElementById("task_id").innerText
-    data.execution_date = document.getElementById("execution_date").innerText
+  if(url.match(/airflow\/log/)) {
+    getLogData(data, params);
   }
   else {
-    data.success = false;
+    getRunData(data, params);
   }
 
   return data;
 }
+
+/**
+ * Get dag_id, task_id and execution_id and return them
+ * If they are not found, return {success: false}
+ */
+function getRunData(data, params) {
+  data.run = true;
+  // Get data from url
+  if(params.dag_id && params.task_id && params.execution_date) {
+    data.dag_id = params.dag_id;
+    data.task_id = params.task_id;
+    data.execution_date = params.execution_date;
+  }
+  // Or get them from modal info
+  else if(params.dag_id && document.getElementsByTagName("body")[0].getAttribute("class") && document.getElementsByTagName("body")[0].getAttribute("class").match(/modal-open/ig)) {
+    data.dag_id = params.dag_id;
+    data.task_id = document.getElementById("task_id").innerText;
+    data.execution_date = document.getElementById("execution_date").innerText;
+  }
+  else {
+    data.success = false;
+    data.error = "Unable to generate airflow run command";
+  }
+}
+
+function getLogData(data, params) {
+  data.log = true;
+  let logs = document.getElementsByTagName("pre")[0].innerText;
+  let matchResult = logs.match(/Running\ command:\ (?<command>.*)/);
+
+  if(matchResult) {
+    data.command = matchResult.groups.command;
+  }
+  else {
+    // If there is no running command we fetch `airflow run ...`
+    getRunData(data, params);
+  }
+}
+
 
 var isFirefox = typeof InstallTrigger !== 'undefined';
 var currentBrowser = isFirefox ? browser : chrome;

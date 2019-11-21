@@ -1,7 +1,7 @@
 {
   "name": "Airflow Extension",
-  "version": "1.1.0",
-  "description": "Automatically generate airflow run command",
+  "version": "1.2.0",
+  "description": "Automatically generate commands from airflow UI",
   "permissions": ["activeTab", "declarativeContent"],
   "browser_action": {
     "default_popup": "popup.html",
