@@ -61,9 +61,9 @@ On the log page of a task, the extension will fetch the `Running command` called
 
 It is possible to define a list of DAGs which will be highlighted on Airflow UI.
 
-Open extension popup and then click "_Settings_".
+Open extension popup and then click on "_Settings_".
 
-In options page, define a list of DAGs name in _csv_ (_e.g. dag1,dag2,dag3_) in textarea under "_List of dags to highlight_". 
+In _settings_ page, define a list of DAGs name in _csv_ (_e.g. dag1,dag2,dag3_) in textarea under "_List of dags to highlight_". 
 Then in any Airflow UI page on _"DAGs"_ page, if a DAG name contains one of the name defined in option, the line will be highlighted.
 
 ## Updates

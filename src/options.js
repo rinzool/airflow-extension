@@ -6,6 +6,7 @@ var currentBrowser = typeof InstallTrigger !== 'undefined' ? browser : chrome;
 
 // Fetch stored dags
 currentBrowser.storage.sync.get('dags', function(data) {
+  console.log(data);
   dagsTextArea.value = data.dags ? data.dags : '';
 })
 
