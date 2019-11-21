@@ -80,5 +80,8 @@ function processContentResponse(response) {
 }
 
 seeMoreButton.addEventListener('click', function(){show(seeMoreContent)});
+document.getElementById("open-settings").addEventListener('click', function(){
+  chrome.runtime.openOptionsPage(function() {})
+})
 
 
