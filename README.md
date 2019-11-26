@@ -65,6 +65,8 @@ Open extension popup and then click on "_Settings_".
 In _settings_ page, define a list of DAGs name in _csv_ (_e.g. dag1,dag2,dag3_) inthe textarea under "_List of dags to highlight_". 
 Then on Airflow UI _"DAGs"_ page, if a DAG name contains one of the name defined in option, the line will be highlighted.
 
+> It is possible to customize style applied to highlighted DAG's in _Option page_
+
 ## Updates
 
 To get last updates :
