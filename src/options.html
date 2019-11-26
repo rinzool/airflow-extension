@@ -2,15 +2,28 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+      a {
+        color: #007bff !important;
+      }
+      a:hover {
+        cursor: pointer !important;
+        text-decoration: underline !important;
+      }
+    </style>
   </head>
   <body>
     <div class = "container">
+
+      <!-- Title -->
       <div class = "row">
         <div class = "col-xl">
           <legend> Airflow Extension - Settings </legend>
         </div>
       </div>
-
+      
+      <!-- Dags to highlight -->
       <div class = "row">
         <div class = "col-xl">
 
@@ -19,6 +32,29 @@
             <textarea class="form-control" id = "dags"></textarea>
             <small class="form-text text-muted">Use <em>csv</em>. Ex: dag1,dag2,dag3</small>
           </div>
+
+        </div>
+      </div>
+
+      <!-- Dags highlight option -->
+      <div class = "row">
+        <div class = "col-xl">
+
+          <div class = "form-group">
+            <label for="highlight-dag-style">Style for DAG's highlight:</label> 
+            <input type = "text" class="form-control" id = "highlight-dag-style"/>
+            <small class="form-text text-muted">
+              Css style applied to table line of a highlighted dag. 
+              <a id = "reset-highlight-default">Reset to default</a>
+            </small>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Update button -->
+      <div class = "row">
+        <div class = "col-xl">
 
           <div style = "margin-bottom: 20px">
             <button class = "btn btn-primary" id="validate">Update</button>
@@ -30,6 +66,8 @@
 
         </div>
       </div>
+
+
     </div>
   </body>
   <script src="options.js"></script>
