@@ -3,7 +3,7 @@ const successAlert = document.getElementById("success-alert");
 const dagsTextArea= document.getElementById("dags");
 const hightlightStyleInput = document.getElementById('highlight-dag-style');
 
-const defaultHighlightStyle = 'background: lightgoldenrodyellow; font-weight: bold';
+const defaultHighlightStyle = 'background: lightgoldenrodyellow; font-weight: bold;';
 
 var currentBrowser = typeof InstallTrigger !== 'undefined' ? browser : chrome;
 
