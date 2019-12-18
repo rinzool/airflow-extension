@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["highlightDags.js"]
+      "js": ["contentScript.js"]
     }
   ],
 

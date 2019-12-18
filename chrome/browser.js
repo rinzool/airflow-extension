@@ -1,6 +1,6 @@
 // Inject content script
 chrome.tabs.executeScript({
-  file: 'contentScript.js'
+  file: 'executedScript.js'
 });
 
 // Trigger content script
