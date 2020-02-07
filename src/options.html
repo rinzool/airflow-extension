@@ -40,6 +40,10 @@
           /* Move the check mark back when checked */
               text-indent: 0;
       }
+
+      .margin-top {
+        margin-top: 20px;
+      }
     </style>
   </head>
   <body>
@@ -53,7 +57,7 @@
       </div>
       
       <!-- Dags to highlight -->
-      <div class = "row">
+      <div class = "row margin-top">
         <div class = "col-xl">
 
           <div class = "form-group">
@@ -66,7 +70,7 @@
       </div>
 
       <!-- Dags highlight option -->
-      <div class = "row">
+      <div class = "row margin-top">
         <div class = "col-xl">
 
           <div class = "form-group">
@@ -82,18 +86,15 @@
       </div>
       
       <!-- Color blind option -->
-      <div class = "row">
+      <div class = "row margin-top">
         <div class = "col-xl">
-
-          <div class="btn-group-toggle" data-toggle="buttons" style = "cursor: pointer">
-            <label for="colorblind-option" class="btn btn-secondary"> 
-              Colorblind option
-              <input type="checkbox" id="colorblind-option" class="badgebox">
-              <span class="badge">&check;</span>
-            </label>
-            </div>
-          </div>
-
+          <label for = "colors">Colors for each task's state</label>
+          <small class="form-text text-muted">
+            <a id = "reset-colors-default">Reset to default</a>
+          </small>
+          <table class = "table" id = "colors">
+          </table>
+        </div>
       </div>
 
       <!-- Update button -->
@@ -101,7 +102,7 @@
         <div class = "col-xl">
 
           <div style = "margin-bottom: 20px">
-            <button class = "btn btn-primary" id="validate">Update</button>
+            <button class = "btn btn-primary" id="validate">Update all</button>
           </div>
 
           <div id = "success-alert" class="alert alert-info" style = "display: none" role="alert">

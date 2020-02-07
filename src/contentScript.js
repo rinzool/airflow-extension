@@ -12,11 +12,9 @@ if (document.getElementsByTagName("title")[0].innerText.match(/Airflow/ig)) {
   })
 
   // Check if there is colorblind option
-  currentBrowser.storage.sync.get('colorblind', function(data) {
-    if (data.colorblind) {
-      activateColorBlindMode();
-
-      document.getElementById('refresh_button').addEventListener('click', activateColorBlindMode);
+  currentBrowser.storage.sync.get('colors', function(data) {
+    if (data.colors) {
+      activateColorBlindMode(data.colors);
     }
   })
 }
@@ -34,6 +32,30 @@ function highlightDags(dags, style) {
   }
 }
 
-function activateColorBlindMode() {
-  alert("TODO COLOR BLIND")
+function activateColorBlindMode(colors) {
+  const style = document.createElement("style");
+  document.head.appendChild(style);
+  
+  let styleSheet = style.sheet;
+
+  const dict = {};
+
+  for (let i = 0; i < colors.length; i ++) {
+    const color = colors[i];
+    styleSheet.insertRule('rect.' + color.state + ' {fill: ' + color.color + '}', 0);
+    styleSheet.insertRule('g.node.' + color.state + ' rect {stroke: ' + color.color + '}', 0);
+
+    dict[color.state] = color.color;
+  }
+
+
+  const circles = document.getElementsByTagName("circle")
+  for (let i = 0; i < circles.length; i ++) {
+    const circle = circles[i];
+
+    const title = circle.getAttribute("data-original-title");
+    if (title && dict[title]) {
+      circle.setAttribute("stroke", dict[title]);
+    }
+  }
 }
