@@ -49,13 +49,24 @@ function activateColorBlindMode(colors) {
   }
 
 
-  const circles = document.getElementsByTagName("circle")
-  for (let i = 0; i < circles.length; i ++) {
-    const circle = circles[i];
+  colorCircles(dict);
+}
 
-    const title = circle.getAttribute("data-original-title");
-    if (title && dict[title]) {
-      circle.setAttribute("stroke", dict[title]);
+function colorCircles(dict) {
+  const circles = document.getElementsByTagName("circle")
+
+  if (circles.length > 0) {
+    for (let i = 0; i < circles.length; i ++) {
+      const circle = circles[i];
+
+      const title = circle.getAttribute("data-original-title");
+        if (title && dict[title]) {
+          circle.setAttribute("stroke", dict[title]);
+        }
     }
+  } else {
+    setTimeout(function() {
+      colorCircles(dict);
+    }, 500);
   }
 }
