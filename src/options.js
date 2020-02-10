@@ -10,7 +10,7 @@ const defaultTasksColors = [
   {state: "success", color: "#448102"},
   {state: "running", color: "#7ae11d"},
   {state: "failed", color: "#ed4c1a"},
-  {state: "upstream_failed", color: "#ffd700"},
+  {state: "upstream_failed", color: "#f7a400"},
   {state: "queued", color: "#808080"},
   {state: "up_for_reschedule", color: "#67e1d0"},
   {state: "skipped", color: "#f5bfcb"},
