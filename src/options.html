@@ -11,6 +11,39 @@
         cursor: pointer !important;
         text-decoration: underline !important;
       }
+      /* Hiding the checkbox, but allowing it to be focused */
+      .badgebox
+      {
+          opacity: 0;
+      }
+
+      .badgebox + .badge
+      {
+          /* Move the check mark away when unchecked */
+          text-indent: -999999px;
+          /* Makes the badge's width stay the same checked and unchecked */
+              width: 27px;
+      }
+
+      .badgebox:focus + .badge
+      {
+          /* Set something to make the badge looks focused */
+          /* This really depends on the application, in my case it was: */
+
+          /* Adding a light border */
+          box-shadow: inset 0px 0px 5px;
+          /* Taking the difference out of the padding */
+      }
+
+      .badgebox:checked + .badge
+      {
+          /* Move the check mark back when checked */
+              text-indent: 0;
+      }
+
+      .margin-top {
+        margin-top: 20px;
+      }
     </style>
   </head>
   <body>
@@ -24,7 +57,7 @@
       </div>
       
       <!-- Dags to highlight -->
-      <div class = "row">
+      <div class = "row margin-top">
         <div class = "col-xl">
 
           <div class = "form-group">
@@ -37,7 +70,7 @@
       </div>
 
       <!-- Dags highlight option -->
-      <div class = "row">
+      <div class = "row margin-top">
         <div class = "col-xl">
 
           <div class = "form-group">
@@ -51,13 +84,25 @@
 
         </div>
       </div>
+      
+      <!-- Color blind option -->
+      <div class = "row margin-top">
+        <div class = "col-xl">
+          <label for = "colors">Colors for each task's state</label>
+          <small class="form-text text-muted">
+            <a id = "reset-colors-default">Reset to default</a>
+          </small>
+          <table class = "table" id = "colors">
+          </table>
+        </div>
+      </div>
 
       <!-- Update button -->
-      <div class = "row">
+      <div class = "row" style = "margin-top: 30px;">
         <div class = "col-xl">
 
           <div style = "margin-bottom: 20px">
-            <button class = "btn btn-primary" id="validate">Update</button>
+            <button class = "btn btn-primary" id="validate">Update all</button>
           </div>
 
           <div id = "success-alert" class="alert alert-info" style = "display: none" role="alert">

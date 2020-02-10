@@ -69,6 +69,10 @@ Then on Airflow UI _"DAGs"_ page, if a DAG name contains one of the name defined
 
 > It is possible to customize style applied to highlighted DAG's in _Option page_. You just need to change the CSS style.
 
+### Color Blind friendly
+
+It is possible to choose colors for each task state to use most appropriate set of colors depending on possible color blindness.
+
 ## Updates
 
 To get last updates :
