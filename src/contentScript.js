@@ -1,7 +1,9 @@
 const defaultHighlightStyle = 'background: lightgoldenrodyellow; font-weight: bold;';
 var currentBrowser = typeof InstallTrigger !== 'undefined' ? browser : chrome;
 
-if (document.getElementsByTagName("title")[0].innerText.match(/Airflow/ig)) {
+const title = document.getElementsByTagName("title");
+
+if (title && title[0] && title[0].innerText && title[0].innerText.match(/Airflow/ig)) {
   // Load dags to highlight them
   currentBrowser.storage.sync.get('dags', function(data) {
     if (data.dags) {

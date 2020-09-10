@@ -2,9 +2,16 @@
 const successAlert = document.getElementById("success-alert");
 const dagsTextArea= document.getElementById("dags");
 const hightlightStyleInput = document.getElementById('highlight-dag-style');
+const prodUrls = document.getElementById('prod-urls');
+const prodUrlColor = document.getElementById('prod-color');
+const stagingUrls = document.getElementById('staging-urls');
+const stagingUrlColor = document.getElementById('staging-color');
 const colorblindOption = document.getElementById('colorblind-option');
 
 const defaultHighlightStyle = 'background: lightgoldenrodyellow; font-weight: bold;';
+
+const defaultProdColor = '#ed4c1a';
+const defaultStagingColor = '#67e1d0';
 
 const defaultTasksColors = [
   {state: "success", color: "#448102"},
@@ -26,6 +33,18 @@ currentBrowser.storage.sync.get('dags', function(data) {
 
 currentBrowser.storage.sync.get('highlightStyle', function(data) {
   hightlightStyleInput.value = data.highlightStyle ? data.highlightStyle : defaultHighlightStyle;
+})
+
+currentBrowser.storage.sync.get('prodUrl', function(data) {
+  console.log(data);
+  prodUrls.value = data.prodUrl ? data.prodUrl.urls : '';
+  prodUrlColor.value = data.prodUrl ? data.prodUrl.color : defaultProdColor;
+})
+
+currentBrowser.storage.sync.get('stagingUrl', function(data) {
+  console.log(data);
+  stagingUrls.value = data.stagingUrl ? data.stagingUrl.urls : '';
+  stagingUrlColor.value = data.stagingUrl ? data.stagingUrl.color : defaultStagingColor;
 })
 
 currentBrowser.storage.sync.get('colors', function(data) {
@@ -62,17 +81,21 @@ function displayColorsForm(colors) {
 }
 
 
-// Update stored list of dags
+// Update options 
 function update() {
   hide(successAlert);
   
   const dags = dagsTextArea.value.split(',').map(dag => dag.replace(' ', ''));
   const style = hightlightStyleInput.value;
+  const prodUrlsValues = prodUrls.value.split(',').map(url => url.replace(' ', ''));
+  const stagingUrlsValues = stagingUrls.value.split(',').map(url => url.replace(' ', ''));
   const colors = getColors();
 
   var data = {}
   if(dags) data.dags = dags;
   if(style) data.highlightStyle = style;
+  if(prodUrlsValues) data.prodUrl = {urls: prodUrlsValues, color: prodUrlColor.value};
+  if(stagingUrlsValues) data.stagingUrl = {urls: stagingUrlsValues, color: stagingUrlColor.value};
   data.colors = colors;
 
   currentBrowser.storage.sync.set(data, function() {
@@ -107,12 +130,24 @@ function resetColorsDefault() {
   }
 }
 
+function resetProdColorDefault() {
+  prodUrlColor.value = defaultProdColor;
+}
+
+function resetStagingColorDefault() {
+  stagingUrlColor.value = defaultStagingColor;
+}
+
 // Update stored list of dags when validating form
 document.getElementById('validate').addEventListener('click', update)
 
 document.getElementById('reset-highlight-default').addEventListener('click', resetHightlightDefault)
 
 document.getElementById('reset-colors-default').addEventListener('click', resetColorsDefault)
+
+document.getElementById('reset-prod-color-default').addEventListener('click', resetProdColorDefault)
+
+document.getElementById('reset-staging-color-default').addEventListener('click', resetStagingColorDefault)
 
 // Basic show/hide functions
 function hide(e) {
