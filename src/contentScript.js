@@ -1,7 +1,9 @@
 const defaultHighlightStyle = 'background: lightgoldenrodyellow; font-weight: bold;';
 var currentBrowser = typeof InstallTrigger !== 'undefined' ? browser : chrome;
 
-if (document.getElementsByTagName("title")[0].innerText.match(/Airflow/ig)) {
+const title = document.getElementsByTagName("title");
+
+if (title && title[0] && title[0].innerText && title[0].innerText.match(/Airflow/ig)) {
   // Load dags to highlight them
   currentBrowser.storage.sync.get('dags', function(data) {
     if (data.dags) {
@@ -9,6 +11,16 @@ if (document.getElementsByTagName("title")[0].innerText.match(/Airflow/ig)) {
         highlightDags(data.dags, style.highlightStyle ? style.highlightStyle : defaultHighlightStyle);
       })
     }
+  })
+  
+  // Airlfow Navbar prod color
+  currentBrowser.storage.sync.get('prodUrl', function(data) {
+    colorNavBar(data.prodUrl);
+  })
+  
+  // Airlfow Navbar staging color
+  currentBrowser.storage.sync.get('stagingUrl', function(data) {
+    colorNavBar(data.stagingUrl);
   })
 
   // Check if there is colorblind option
@@ -28,6 +40,19 @@ function highlightDags(dags, style) {
         tr.setAttribute("style", style);
         break;
       }
+    }
+  }
+}
+
+function colorNavBar(data) {
+  console.log(data);
+  for (let url of data.urls) {
+    if (url === location.host) {
+      console.log("in", data.color);
+      document.getElementsByTagName("nav")[0].setAttribute("style", "background-color: " + data.color); 
+      document.getElementsByClassName("active")[0].children[0].setAttribute("style", "background-color: #00000020");
+      
+      break;
     }
   }
 }
