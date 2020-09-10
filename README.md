@@ -69,6 +69,13 @@ Then on Airflow UI _"DAGs"_ page, if a DAG name contains one of the name defined
 
 > It is possible to customize style applied to highlighted DAG's in _Option page_. You just need to change the CSS style.
 
+### Color Navbar depending on environment
+
+It is possible to distinguish Airflow environment depending on URL to use a custom color for prod and/or staging.
+
+In settings section, it is possible to add a list of url (_csv format_) for prod and staging, and to define a dedicated 
+color.
+
 ### Color Blind friendly
 
 It is possible to choose colors for each task state to use most appropriate set of colors depending on possible color blindness.
