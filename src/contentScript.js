@@ -12,6 +12,16 @@ if (title && title[0] && title[0].innerText && title[0].innerText.match(/Airflow
       })
     }
   })
+  
+  // Airlfow Navbar prod color
+  currentBrowser.storage.sync.get('prodUrl', function(data) {
+    colorNavBar(data.prodUrl);
+  })
+  
+  // Airlfow Navbar staging color
+  currentBrowser.storage.sync.get('stagingUrl', function(data) {
+    colorNavBar(data.stagingUrl);
+  })
 
   // Check if there is colorblind option
   currentBrowser.storage.sync.get('colors', function(data) {
@@ -30,6 +40,19 @@ function highlightDags(dags, style) {
         tr.setAttribute("style", style);
         break;
       }
+    }
+  }
+}
+
+function colorNavBar(data) {
+  console.log(data);
+  for (let url of data.urls) {
+    if (url === location.host) {
+      console.log("in", data.color);
+      document.getElementsByTagName("nav")[0].setAttribute("style", "background-color: " + data.color); 
+      document.getElementsByClassName("active")[0].children[0].setAttribute("style", "background-color: #00000020");
+      
+      break;
     }
   }
 }

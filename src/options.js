@@ -10,8 +10,8 @@ const colorblindOption = document.getElementById('colorblind-option');
 
 const defaultHighlightStyle = 'background: lightgoldenrodyellow; font-weight: bold;';
 
-const defaultProdColor = '#ed4c1a';
-const defaultStagingColor = '#67e1d0';
+const defaultProdColor = '#e06551';
+const defaultStagingColor = '#6693be';
 
 const defaultTasksColors = [
   {state: "success", color: "#448102"},
