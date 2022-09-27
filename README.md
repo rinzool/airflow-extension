@@ -19,7 +19,7 @@ git clone https://github.com/rinzool/airflow-run-extension.git ~/
 
 Build package
 ```console
-cd airflow-run-extension
+cd airflow-extension
 ./build.sh
 ```
 
