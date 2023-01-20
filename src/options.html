@@ -1,170 +1,174 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <head>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <title>Airflow's extension settings page</title>
 
-    <style>
-      a {
-        color: #007bff !important;
-      }
-      a:hover {
-        cursor: pointer !important;
-        text-decoration: underline !important;
-      }
-      /* Hiding the checkbox, but allowing it to be focused */
-      .badgebox
-      {
-          opacity: 0;
-      }
+        <style>
+            a {
+                color: #007bff !important;
+            }
+            a:hover {
+                cursor: pointer !important;
+                text-decoration: underline !important;
+            }
+            /* Hiding the checkbox, but allowing it to be focused */
+            .badgebox {
+                opacity: 0;
+            }
 
-      .badgebox + .badge
-      {
-          /* Move the check mark away when unchecked */
-          text-indent: -999999px;
-          /* Makes the badge's width stay the same checked and unchecked */
-              width: 27px;
-      }
+            .badgebox + .badge {
+                /* Move the check mark away when unchecked */
+                text-indent: -999999px;
+                /* Makes the badge's width stay the same checked and unchecked */
+                width: 27px;
+            }
 
-      .badgebox:focus + .badge
-      {
-          /* Set something to make the badge looks focused */
-          /* This really depends on the application, in my case it was: */
+            .badgebox:focus + .badge {
+                /* Set something to make the badge looks focused */
+                /* This really depends on the application, in my case it was: */
 
-          /* Adding a light border */
-          box-shadow: inset 0px 0px 5px;
-          /* Taking the difference out of the padding */
-      }
+                /* Adding a light border */
+                box-shadow: inset 0px 0px 5px;
+                /* Taking the difference out of the padding */
+            }
 
-      .badgebox:checked + .badge
-      {
-          /* Move the check mark back when checked */
-              text-indent: 0;
-      }
+            .badgebox:checked + .badge {
+                /* Move the check mark back when checked */
+                text-indent: 0;
+            }
 
-      .margin-top {
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class = "container">
+            .margin-top {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Title -->
+            <div class="row">
+                <div class="col-xl">
+                    <h1>Airflow Extension - Settings</h1>
+                </div>
+            </div>
 
-      <!-- Title -->
-      <div class = "row">
-        <div class = "col-xl">
-          <legend> Airflow Extension - Settings </legend>
+            <div id="dags-highlighter">
+                <h2>DAGs highlighter</h2>
+                <p>Highlight DAGs in the main Airflow page.</p>
+
+                <div class="container">
+                    <!-- Dags to highlight -->
+                    <div class="row margin-top">
+                        <div class="col-xl">
+                            <div class="form-group">
+                                <label for="dags">List of dags to highlight:</label>
+                                <textarea class="form-control" id="dags"></textarea>
+                                <small class="form-text text-muted">Use <em>csv</em>. Ex: dag1,dag2,dag3</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dags highlight option -->
+                    <div class="row margin-top">
+                        <div class="col-xl">
+                            <div class="form-group">
+                                <label for="highlight-dag-style">Style for DAG's highlight:</label>
+                                <input type="text" class="form-control" id="highlight-dag-style" />
+                                <small class="form-text text-muted">
+                                    Css style applied to table line of a highlighted dag.
+                                    <a id="reset-highlight-default">Reset to default</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="navbar-color-changer">
+                <h2>Navbar color changer</h2>
+                <p>Change the color of the Airflow navbar, useful when working on multiple environments.</p>
+
+                <div class="container">
+                    <!-- Prod Navbar -->
+                    <div class="row margin-top">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label for="prod-urls">List of <strong>prod</strong> urls:</label>
+                                <textarea class="form-control" id="prod-urls"></textarea>
+                                <small class="form-text text-muted">Use <em>csv</em>. Ex: url1.fr,url2.com</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="prod-color">Prod bar color:</label><br />
+                                <input type="color" name="prod-color" id="prod-color" />
+                                <br />
+                                <small class="form-text text-muted">
+                                    <a id="reset-prod-color-default">Reset to default</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Staging Navbar -->
+                    <div class="row margin-top">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label for="staging-urls">List of <strong>staging</strong> urls:</label>
+                                <textarea class="form-control" id="staging-urls"></textarea>
+                                <small class="form-text text-muted">Use <em>csv</em>. Ex: url1.fr,url2.com</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="staging-color">Staging bar color:</label><br />
+                                <input type="color" name="staging-color" id="staging-color" />
+                                <br />
+                                <small class="form-text text-muted">
+                                    <a id="reset-staging-color-default">Reset to default</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color blind option -->
+            <div id="colorblind-option">
+                <h2>Colorblind options</h2>
+                <p>Change the colors of task's states, whereas you're colorblind or not.</p>
+
+                <div class="container">
+                    <div class="row margin-top">
+                        <div class="col-xl form-group">
+                            <label>Colors for each task's state</label>
+                            <small class="form-text text-muted">
+                                <a id="reset-colors-default">Reset to default</a>
+                            </small>
+                            <table class="table" id="colors"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      
-      <!-- Dags to highlight -->
-      <div class = "row margin-top">
-        <div class = "col-xl">
 
-          <div class = "form-group">
-            <label for="dags">List of dags to highlight:</label> 
-            <textarea class="form-control" id = "dags"></textarea>
-            <small class="form-text text-muted">Use <em>csv</em>. Ex: dag1,dag2,dag3</small>
-          </div>
+        <!-- Update button -->
+        <div class="row" style="margin-top: 30px">
+            <div class="col-xl">
+                <div style="margin-bottom: 20px; text-align: center">
+                    <button class="btn btn-primary" id="validate">Update all</button>
+                </div>
 
+                <div id="success-alert" class="alert alert-info" style="display: none" role="alert">
+                    Options successfuly updated
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Dags highlight option -->
-      <div class = "row margin-top">
-        <div class = "col-xl">
-
-          <div class = "form-group">
-            <label for="highlight-dag-style">Style for DAG's highlight:</label> 
-            <input type = "text" class="form-control" id = "highlight-dag-style"/>
-            <small class="form-text text-muted">
-              Css style applied to table line of a highlighted dag. 
-              <a id = "reset-highlight-default">Reset to default</a>
-            </small>
-          </div>
-
-        </div>
-      </div>
-      
-      <!-- Prod Navbar -->
-      <div class = "row margin-top">
-        <div class = "col-md-9">
-
-          <div class = "form-group">
-            <label for="prod-urls">List of <strong>prod</strong> urls:</label> 
-            <textarea class="form-control" id = "prod-urls"></textarea>
-            <small class="form-text text-muted">Use <em>csv</em>. Ex: url1.fr,url2.com</small>
-          </div>
-
-        </div>
-        <div class = "col-md-3">
-
-          <div class = "form-group">
-            <label for="prod-color">Prod bar color:</label><br/>
-            <input type="color" name="prod-color" id="prod-color">
-            <br/>
-            <small class="form-text text-muted">
-              <a id = "reset-prod-color-default">Reset to default</a>
-            </small>
-          </div>
-
-        </div>
-      </div>
-      
-      <!-- Staging Navbar -->
-      <div class = "row margin-top">
-        <div class = "col-md-9">
-
-          <div class = "form-group">
-            <label for="staging-urls">List of <strong>staging</strong> urls:</label> 
-            <textarea class="form-control" id = "staging-urls"></textarea>
-            <small class="form-text text-muted">Use <em>csv</em>. Ex: url1.fr,url2.com</small>
-          </div>
-
-        </div>
-        <div class = "col-md-3">
-
-          <div class = "form-group">
-            <label for="staging-color">Staging bar color:</label><br/>
-            <input type="color" name="staging-color" id="staging-color">
-            <br/>
-            <small class="form-text text-muted">
-              <a id = "reset-staging-color-default">Reset to default</a>
-            </small>
-          </div>
-
-        </div>
-      </div>
-      
-      <!-- Color blind option -->
-      <div class = "row margin-top">
-        <div class = "col-xl">
-          <label for = "colors">Colors for each task's state</label>
-          <small class="form-text text-muted">
-            <a id = "reset-colors-default">Reset to default</a>
-          </small>
-          <table class = "table" id = "colors">
-          </table>
-        </div>
-      </div>
-
-      <!-- Update button -->
-      <div class = "row" style = "margin-top: 30px;">
-        <div class = "col-xl">
-
-          <div style = "margin-bottom: 20px">
-            <button class = "btn btn-primary" id="validate">Update all</button>
-          </div>
-
-          <div id = "success-alert" class="alert alert-info" style = "display: none" role="alert">
-            Options successfuly updated
-          </div>
-
-        </div>
-      </div>
-
-
-    </div>
-  </body>
-  <script src="options.js"></script>
+        <script src="options.js"></script>
+    </body>
 </html>
-

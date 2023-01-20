@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href = "popup.css"/>
-  </head>
-  <body>
-    <div id = "input-div" class = "container">
-      <label for = "field" id = "field-name"></label>
-      <input autofocus class = "form-control" id = "field"/>
-      <br/>
-      <em id = "copied">Copied to clipboard!</em>
-    </div>
-    
-    <div id = "error" class = "alert alert-danger">
-    </div>
+    <head>
+        <meta charset="utf-8" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="popup.css" />
+        <title>Airflow's extension pop up</title>
+    </head>
 
-    <div id = "see-more" style = "display: none;" class = "container">
-      <a id = "see-more-button"> See more </a>
-      <div id = "see-more-content" style = "display: none;">
-        Make sure that the modal with task details is opened <br/>
-        OR <br/>
-        You are into task details page (you should see <em>task_id, dag_id and execution_date</em> in the URL)
-      </div>
-    </div>
+    <body>
+        <div style="text-align: center">
+            <h1>Airflow Extension</h1>
+            <img src="../images/logo.png" alt="Airflow log" />
+        </div>
+        <div class="container" style="font-size: 0.9em; font-style: italic; text-align: right">
+            <a id="open-settings">Go to settings</a>
+        </div>
 
-    <div class = "container" style = "font-size: 0.9em; font-style: italic; text-align: right">
-      <a id = "open-settings">Settings</a>
-    </div>
-
-
-    <script src="browser.js"></script>
-    <script src="popup.js"></script>
-  </body>
+        <script src="browser.js"></script>
+        <script src="popup.js"></script>
+    </body>
 </html>

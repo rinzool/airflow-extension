@@ -1,0 +1,13 @@
+name: validation
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+    steps:
+      - uses: actions/checkout@v2
+      - name: HtmlAndCssValidator
+        uses: Cyb3r-Jak3/html5validator-action@v7.1.1
+        with:
+          css: true
+          root: src

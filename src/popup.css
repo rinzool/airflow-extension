@@ -1,12 +1,12 @@
 body {
-  min-width: 500px;
-  padding: 10px;
+    min-width: 500px;
+    padding: 10px;
 }
 
 a {
-  cursor: pointer !important;
-  color: #007bff !important;
+    cursor: pointer !important;
+    color: #007bff !important;
 }
 a:hover {
-  text-decoration: underline !important;
+    text-decoration: underline !important;
 }
