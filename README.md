@@ -75,4 +75,5 @@ Technologies :
 
 ## Author
 
-[Quentin Nambot](mailto:quentin.nambot@grenoble-inp.org)
+[Quentin FLEURENT NAMBOT](https://github.com/rinzool)
+[Lukland](https://github.com/lukland)
