@@ -6,6 +6,8 @@ Compatible with Chrome and Firefox.
 This extension has been tested on the following Airflow versions:
 - 2.2.2
 
+This extension is not available on Chrome and Firefox stores. You'll need to build it yourself.
+
 ## Features
 ### Highlight DAGs
 
@@ -60,8 +62,6 @@ To get last updates :
 * `git pull`
 * `make build-all`
 * Reload extension on your browser or re-import it for firefox users
-
-> If new tasks type appears in a new realease, you will have to restore defaults for colorblind options.
 
 ## Contribute
 Fork the project and submit a PR on the Github repo.
