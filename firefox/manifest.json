@@ -1,8 +1,7 @@
 {
-
   "manifest_version": 2,
   "name": "Airflow Extension",
-  "version": "1.5.0",
+  "version": "1.6.0",
 
   "description": "Automatically generates commands from airflow UI and improve it",
   "homepage_url": "https://github.com/rinzool/airflow-run-extension",
@@ -38,7 +37,7 @@
 
   "browser_action": {
     "default_icon": "images/logo.png",
-    "default_title": "Airflow Run",
+    "default_title": "Airflow utils",
     "default_popup": "popup.html"
   }
 }

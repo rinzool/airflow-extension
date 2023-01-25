@@ -8,3 +8,6 @@ firefox/**/popup.*
 firefox/**/options.*
 firefox/highlightDags.js
 firefox/*.zip
+
+*.swp
+.DS_Store

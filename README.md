@@ -1,63 +1,14 @@
 # Airflow Extension
 
-Browser Extension to improve Airflow User Experience, on the web server.
+Browser Extension to improve Airflow UI User Experience.
 
 Compatible with Chrome and Firefox.
+This extension has been tested on the following Airflow versions:
+- 2.2.2
 
-## Demo
-
-![Démo](demo/demo.gif)
-
-
-## Installation
-
-Clone repository where you want it, for example in your home.
-
-```console
-git clone https://github.com/rinzool/airflow-run-extension.git ~/
-```
-
-Build package
-```console
-cd airflow-run-extension
-./build.sh
-```
-
-### Chrome
-On Chrome, go to `chrome://extensions/`
-
-Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top left, and choose the subdirectory `airflow-run-extension/chrome`.
-
-### Firefox
-
-> WARNING : You will need Firefox Developer Edition to install the add-on and set the field `xpinstall.signatures.required` to `false` in the configuration window ([about:config](about:config)).
-
-First, all source files must be zipped. Go to `./firefox/` and run 
-
-```
-zip -r airflox-extension.zip *
-```
-
-Then on Firefox, go to *add-ons* menu ([about:addons](about:addons)), choose _Install Add-on from file_ and select `firefox/airflow-extension.zip`
+This extension is not available on Chrome and Firefox stores. You'll need to build it yourself.
 
 ## Features
-
-
-### Airflow run 
-
-When you are on Airflow user interface in one of these two situations :
-* The modal showing actions for a specific task is opened 
-* The page is a _Task instance_ page (i.e. _Task Instance detail, Rendered Template, Log_ or _XCom_)
-
-
-On Airflow user interface, click on extension button and a command will be automatically generated if possible.
-It will automatically generate `airflow run dag_id task_id execution_date`.
-Then the command is directly copied to clipboard
-
-### Running Command
-
-On the log page of a task, the extension will fetch the `Running command` called by the task if it exists.
-
 ### Highlight DAGs
 
 It is possible to define a list of DAGs which will be highlighted on Airflow UI.
@@ -80,17 +31,49 @@ color.
 
 It is possible to choose colors for each task state to use most appropriate set of colors depending on possible color blindness.
 
+## Installation
+
+Clone repository where you want it, for example in your home.
+
+```console
+git clone https://github.com/rinzool/airflow-run-extension.git ~/
+```
+
+Build package
+```console
+cd airflow-extension
+make build-all
+```
+
+### Chrome
+On Chrome, go to `chrome://extensions/`
+
+Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top left, and choose the subdirectory `airflow-run-extension/chrome`.
+
+### Firefox
+
+> WARNING : You will need Firefox Developer Edition to install the add-on and set the field `xpinstall.signatures.required` to `false` in the configuration window ([about:config](about:config)).
+
+Firefox, go to *add-ons* menu ([about:addons](about:addons)), choose _Install Add-on from file_ and select `firefox/airflow-extension.zip`
+
 ## Updates
 
 To get last updates :
 * `git pull`
-* `./build.sh`
-* (**for firefox users only**) `cd firefox; zip -r firefox.zip *`
+* `make build-all`
 * Reload extension on your browser or re-import it for firefox users
 
 ## Contribute
 Fork the project and submit a PR on the Github repo.
 
+You may use the Makefile to build and clean the files and folders.
+
+Technologies :
+- [Prettier](https://prettier.io/): Code formater
+- [Bootstrap](https://getbootstrap.com/): Frontend toolkit
+- [HTML5 Validator Action](https://github.com/Cyb3r-Jak3/html5validator-action): HTML Validator
+
 ## Author
 
-[Quentin Nambot](mailto:quentin.nambot@grenoble-inp.org)
+[Quentin FLEURENT NAMBOT](https://github.com/rinzool)
+[Lukland](https://github.com/lukland)
