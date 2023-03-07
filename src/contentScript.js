@@ -45,16 +45,18 @@ function highlightDags(dags, style) {
 }
 
 function colorNavBar(data) {
-    for (let url of data.urls) {
-        if (url === location.host) {
-            document
-                .getElementsByClassName("navbar")[0]
-                .setAttribute("style", "background-color: " + data.color + "!important");
-            document
-                .getElementsByClassName("active")[0]
-                .children[0].setAttribute("style", "background-color: #00000020");
-            break;
-        }
+    // Match URLs with "*" wildcards - e.g. *.prod.*.mycompany.com
+    isUrlMatched = data.urls
+        .map(url => url.replace(/\./g, "\.").replace("*", ".*"))
+        .find(urlRegex => location.host.match(urlRegex))
+
+    if (isUrlMatched) {
+        document
+            .getElementsByClassName("navbar")[0]
+            .setAttribute("style", "background-color: " + data.color + "!important");
+        document
+            .getElementsByClassName("active")[0]
+            .children[0].setAttribute("style", "background-color: #00000020");
     }
 }
 

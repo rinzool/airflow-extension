@@ -15,7 +15,7 @@ It is possible to define a list of DAGs which will be highlighted on Airflow UI.
 
 Open extension popup and then click on "_Settings_".
 
-In _settings_ page, define a list of DAGs name in _csv_ (_e.g. dag1,dag2,dag3_) inthe textarea under "_List of dags to highlight_". 
+In _settings_ page, define a list of DAGs name in _csv_ (_e.g. dag1,dag2,dag3_) in the textarea under "_List of dags to highlight_". 
 Then on Airflow UI _"DAGs"_ page, if a DAG name contains one of the name defined in option, the line will be highlighted.
 
 > It is possible to customize style applied to highlighted DAG's in _Option page_. You just need to change the CSS style.
@@ -25,7 +25,7 @@ Then on Airflow UI _"DAGs"_ page, if a DAG name contains one of the name defined
 It is possible to distinguish Airflow environment depending on URL to use a custom color for prod and/or staging.
 
 In settings section, it is possible to add a list of url (_csv format_) for prod and staging, and to define a dedicated 
-color.
+color. Urls can contain wildcards - e.g. `airflow-*.prod.*.mycompany.com`
 
 ### Color Blind friendly
 
@@ -36,7 +36,7 @@ It is possible to choose colors for each task state to use most appropriate set 
 Clone repository where you want it, for example in your home.
 
 ```console
-git clone https://github.com/rinzool/airflow-run-extension.git ~/
+git clone https://github.com/rinzool/airflow-extension.git ~/
 ```
 
 Build package
@@ -48,7 +48,7 @@ make build-all
 ### Chrome
 On Chrome, go to `chrome://extensions/`
 
-Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top left, and choose the subdirectory `airflow-run-extension/chrome`.
+Active _Developer Mode_ on the top right, then select _Load Unpack_ on the top left, and choose the subdirectory `airflow-extension/chrome`.
 
 ### Firefox
 
