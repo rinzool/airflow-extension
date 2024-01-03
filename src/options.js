@@ -49,18 +49,17 @@ currentBrowser.storage.sync.get("stagingUrl", function (data) {
 });
 
 currentBrowser.storage.sync.get("colors", function (data) {
-    const colors = {}
+    const colors = {};
     for (let i = 0; i < defaultTasksColors.length; i++) {
-      colors[defaultTasksColors[i].state] = defaultTasksColors[i].color
+        colors[defaultTasksColors[i].state] = defaultTasksColors[i].color;
     }
     if (data.colors) {
-      for (let i = 0; i < data.colors.length; i++) {
-        colors[data.colors[i].state] = data.colors[i].color
-      }
+        for (let i = 0; i < data.colors.length; i++) {
+            colors[data.colors[i].state] = data.colors[i].color;
+        }
     }
     displayColorsForm(colors);
 });
-
 
 // Display form
 function displayColorsForm(colors) {
@@ -123,7 +122,7 @@ function getColors() {
 
     for (let i = 0; i < defaultTasksColors.length; i++) {
         const state = defaultTasksColors[i].state;
-        console.log("color-" + state)
+        console.log("color-" + state);
         const color = document.getElementById("color-" + state).value;
         colors.push({ state: state, color: color });
     }
