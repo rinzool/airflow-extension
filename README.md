@@ -5,8 +5,9 @@ Browser Extension to improve Airflow UI User Experience.
 Compatible with Chrome and Firefox.
 This extension has been tested on the following Airflow versions:
 - 2.2.2
+- 2.6.3
 
-This extension is not available on Chrome and Firefox stores. You'll need to build it yourself.
+This extension is not available on Chrome and Firefox stores. You'll need to build it yourself, you'll see how in the [Installation section](#installation).
 
 ## Features
 ### Highlight DAGs
@@ -66,7 +67,7 @@ To get last updates :
 ## Contribute
 Fork the project and submit a PR on the Github repo.
 
-You may use the Makefile to build and clean the files and folders.
+You may use the Makefile to build and clean the files and folders. Do not forget to update the `VERSION` file and bumpit to manifests with the command `make bump-all`.
 
 Technologies :
 - [Prettier](https://prettier.io/): Code formater
