@@ -3,7 +3,7 @@ var currentBrowser = typeof InstallTrigger !== "undefined" ? browser : chrome;
 
 const title = document.getElementsByTagName("title");
 
-if (title && title[0] && title[0].innerText && title[0].innerText.match(/Airflow/gi)) {
+if (isAirflowInstance()) {
     // Load dags to highlight them
     currentBrowser.storage.sync.get("dags", function (data) {
         if (data.dags) {
@@ -29,6 +29,21 @@ if (title && title[0] && title[0].innerText && title[0].innerText.match(/Airflow
             activateColorBlindMode(data.colors);
         }
     });
+}
+
+function isAirflowInstance() {
+    const footer = document.querySelector("footer");
+
+    if(footer) {
+        const footerLinks = footer.querySelectorAll("a");
+        for (link of footerLinks) {
+            const href = link.getAttribute("href");
+            if (href && href.includes("https://pypi.python.org/pypi/apache-airflow")) {
+                return true;
+            }
+        };
+    }
+    return false;
 }
 
 function highlightDags(dags, style) {

@@ -5,8 +5,9 @@ Browser Extension to improve Airflow UI User Experience.
 Compatible with Chrome and Firefox.
 This extension has been tested on the following Airflow versions:
 - 2.2.2
+- 2.6.3
 
-This extension is not available on Chrome and Firefox stores. You'll need to build it yourself.
+This extension is not available on Chrome and Firefox stores. You'll need to build it yourself, you'll see how in the [Installation section](#installation).
 
 ## Features
 ### Highlight DAGs
