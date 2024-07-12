@@ -49,8 +49,9 @@ currentBrowser.storage.sync.get("stagingUrl", function (data) {
     stagingUrlColor.value = data.stagingUrl ? data.stagingUrl.color : defaultStagingColor;
 });
 
-currentBrowser.storage.sync.get("colorNavbars", function (data) {
-
+currentBrowser.storage.sync.get("colorGroups", function (data) {
+    var colorGroups = data.colorGroups;
+    initColorGroupsTable(colorGroups);
 });
 
 currentBrowser.storage.sync.get("colors", function (data) {
@@ -94,33 +95,48 @@ function displayColorsForm(colors) {
     }
 }
 
+
+function addEmptyUrlRow() {
+    const colorGroupsTag = document.getElementById("color-navbars").getElementsByTagName('tbody')[0].rows;
+    addUrlRow(colorGroupsTag.length +1);
+}
+
+
+function initColorGroupsTable(colorGroups) {
+    if(colorGroups == undefined || colorGroups.length == 0) {
+        addEmptyUrlRow();
+    } else {
+        for (colorGroup of colorGroups) {
+            addUrlRow(colorGroup.id, colorGroup.name, colorGroup.urls, colorGroup.color);
+        }
+    }
+}
+
 // Update options
 function update() {
     hide(successAlert);
 
     const dags = dagsTextArea.value.split(",").map((dag) => dag.replace(" ", ""));
     const style = hightlightStyleInput.value;
-    const prodUrlsValues = prodUrls.value.split(",").map((url) => url.replace(" ", ""));
-    const stagingUrlsValues = stagingUrls.value.split(",").map((url) => url.replace(" ", ""));
     const colors = getColors();
     var data = {};
     if (dags) data.dags = dags;
     if (style) data.highlightStyle = style;
 
-    const colorGroups = document.querySelectorAll('#color-navbars tbody tr');
-    for(colorGroup of colorGroups ) {
-        var id = colorGroup.cells["0"].innerText;
+    const colorGroupsTag = document.getElementById("color-navbars").getElementsByTagName('tbody')[0].rows;
+    var colorGroups = []
+    for(colorGroupTag of colorGroupsTag) {
+        var id = colorGroupTag.cells["0"].innerText;
         var name = document.getElementsByName("name"+id)["0"].value;
         var urls = document.getElementsByName("urls"+id)["0"].value.split(",").map((url) => url.replace(" ", ""));
         var color = document.getElementsByName("color"+id)["0"].value
+        var colorGroup = {"id": id, "name": name, "urls": urls, "color": color}
+        colorGroups.push(colorGroup)
     }
 
-    if (prodUrlsValues) data.prodUrl = { urls: prodUrlsValues, color: prodUrlColor.value };
-    if (stagingUrlsValues)
-        data.stagingUrl = {
-            urls: stagingUrlsValues,
-            color: stagingUrlColor.value,
-        };
+    data.colorGroups = colorGroups;
+
+
     data.colors = colors;
     currentBrowser.storage.sync.set(data, function () {
         show(successAlert);
@@ -135,7 +151,6 @@ function getColors() {
 
     for (let i = 0; i < defaultTasksColors.length; i++) {
         const state = defaultTasksColors[i].state;
-        console.log("color-" + state);
         const color = document.getElementById("color-" + state).value;
         colors.push({ state: state, color: color });
     }
@@ -165,22 +180,21 @@ function resetStagingColorDefault() {
     stagingUrlColor.value = defaultStagingColor;
 }
 
-function addUrlRow() {
-    var table = document.getElementById("tab_logic");
-    var urlGroupNumber = table.rows.length;
+function addUrlRow(id, name="", urls=[], color="") {
+    var table = document.getElementById("color-navbars")
+    var lines = table.getElementsByTagName("tbody")[0];
 
-    var newRowHtml = "<td>"+ urlGroupNumber +"</td><td><input name='name"+urlGroupNumber+"' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='urls"+urlGroupNumber+"' type='text' placeholder='Urls'  class='form-control input-md'></td><td><input  name='color"+urlGroupNumber+"' type='color' placeholder='color'  class='form-control input-md'></td>"
+    var newRowHtml = "<td>"+ id +"</td><td><input name='name" + id + "' value='" + name + "' type='text' placeholder='Name' class='form-control input-md'/> </td><td><input  name='urls" + id + "' value='" + urls + "'type='text' placeholder='Urls'  class='form-control input-md'></td><td><input  name='color" + id + "' value='" + color + "' type='color' placeholder='color'  class='form-control input-md'></td>"
 
     var newRowTag = document.createElement('tr');
-    newRowTag.setAttribute('id', 'group' + urlGroupNumber);
+    newRowTag.setAttribute('id', 'group' + id);
     newRowTag.innerHTML = newRowHtml;
 
-    // Get the table element by its ID and append the new row
-    table.appendChild(newRowTag);
+    lines.appendChild(newRowTag);
 }
 
 function deleteUrlRow() {    
-    var table = document.getElementById('tab_logic');
+    var table = document.getElementById("color-navbars");
     var rowCount = table.rows.length;
     if(rowCount > 2) {
         table.deleteRow(rowCount -1);
@@ -189,7 +203,7 @@ function deleteUrlRow() {
 
 // Update stored list of dags when validating form
 
-document.getElementById("add-row").addEventListener("click", addUrlRow);
+document.getElementById("add-row").addEventListener("click", addEmptyUrlRow);
 
 document.getElementById("delete-row").addEventListener("click", deleteUrlRow);
 

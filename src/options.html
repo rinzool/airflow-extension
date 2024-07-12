@@ -94,8 +94,7 @@
                 <p>Change the color of the Airflow navbar, useful when working on multiple environments.</p>
 
                 <div class="container">
-                    <!-- Prod Navbar -->
-                    <table id="color-navbars" class="table table-bordered table-hover" id="tab_logic">
+                    <table id="color-navbars" class="table table-bordered table-hover">
                         <thead>
                             <tr >
                                 <th class="text-center">
@@ -113,20 +112,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr id='group1'>
-                                <td>
-                                1
-                                </td>
-                                <td>
-                                <input type="text" name='name1'  placeholder='Name' class="form-control"/>
-                                </td>
-                                <td>
-                                <input type="text" name='urls1' placeholder='Urls' class="form-control"/>
-                                </td>
-                                <td>
-                                <input type="color" name='color1' placeholder='Color' class="form-control"/>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
 
@@ -135,62 +120,29 @@
                         <button id="add-row" class="btn btn-success m-2">+</button>
                     </div>
 
-                    <div class="row margin-top">
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <label for="prod-urls">List of <strong>prod</strong> urls:</label>
-                                <textarea class="form-control" id="prod-urls"></textarea>
-                                <small class="form-text text-muted">Use <em>csv</em> without https. Ex: url1.fr,url2.com</small>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="prod-color">Prod bar color:</label><br />
-                                <input type="color" name="prod-color" id="prod-color" />
-                                <br />
-                                <small class="form-text text-muted">
-                                    <a id="reset-prod-color-default">Reset to default</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Staging Navbar -->
-                    <div class="row margin-top">
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <label for="staging-urls">List of <strong>staging</strong> urls:</label>
-                                <textarea class="form-control" id="staging-urls"></textarea>
-                                <small class="form-text text-muted">Use <em>csv</em> without https. Ex: url1.fr,url2.com</small>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="staging-color">Staging bar color:</label><br />
-                                <input type="color" name="staging-color" id="staging-color" />
-                                <br />
-                                <small class="form-text text-muted">
-                                    <a id="reset-staging-color-default">Reset to default</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <!-- Color blind option -->
             <div id="colorblind-option">
-                <h2>Colorblind options</h2>
-                <p>Change the colors of task's states, whereas you're colorblind or not.</p>
 
-                <div class="container">
-                    <div class="row margin-top">
-                        <div class="col-xl form-group">
-                            <label>Colors for each task's state</label>
-                            <small class="form-text text-muted">
-                                <a id="reset-colors-default">Reset to default</a>
-                            </small>
-                            <table class="table" id="colors"></table>
+                <h2>Colorblind options</h2>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseColorblind" role="button" aria-expanded="false" aria-controls="collapseColorblind">
+                    Colorblind Options
+                </a>
+                <p>Change the colors of task's states, whereas you're colorblind or not.</p>
+                <div class="collapse" id="collapseColorblind">
+                    <div class="card card-body">
+                        <div class="container">
+                            <div class="row margin-top">
+                                <div class="col-xl form-group">
+                                    <label>Colors for each task's state</label>
+                                    <small class="form-text text-muted">
+                                        <a id="reset-colors-default">Reset to default</a>
+                                    </small>
+                                    <table class="table" id="colors"></table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

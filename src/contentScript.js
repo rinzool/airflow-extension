@@ -13,15 +13,9 @@ if (isAirflowInstance()) {
         }
     });
 
-    // Airlfow Navbar prod color
-    currentBrowser.storage.sync.get("prodUrl", function (data) {
-        colorNavBar(data.prodUrl);
-    });
-
-    // Airlfow Navbar staging color
-    currentBrowser.storage.sync.get("stagingUrl", function (data) {
-        colorNavBar(data.stagingUrl);
-    });
+    currentBrowser.storage.sync.get("colorGroups", function (data) {
+        colorNavBar(data.colorGroups)
+    })
 
     // Check if there is colorblind option
     currentBrowser.storage.sync.get("colors", function (data) {
@@ -59,18 +53,23 @@ function highlightDags(dags, style) {
     }
 }
 
-function colorNavBar(data) {
-    // Match URLs with "*" wildcards - e.g. *.prod.*.mycompany.com
-    isUrlMatched = data.urls
-        .map((url) => url.replace(/\./g, ".").replace("*", ".*"))
-        .find((urlRegex) => location.host.match(urlRegex));
+function colorNavBar(colorGroups) {
+    colorGroups.forEach(function (colorGroup) {
+        // Match URLs with "*" wildcards - e.g. *.prod.*.mycompany.com
+        isUrlMatched = colorGroup.urls
+            .map((url) => url.replace(/\./g, ".").replace("*", ".*"))
+            .find((urlRegex) => location.host.match(urlRegex));
 
-    if (isUrlMatched) {
-        document
-            .getElementsByClassName("navbar")[0]
-            .setAttribute("style", "background-color: " + data.color + "!important");
-        document.getElementsByClassName("active")[0].children[0].setAttribute("style", "background-color: #00000020");
-    }
+        if (isUrlMatched) {
+            document
+                .getElementsByClassName("navbar")[0]
+                .setAttribute("style", "background-color: " + colorGroup.color + "!important");
+            document
+                .getElementsByClassName("active")[0]
+                .children[0]
+                .setAttribute("style", "background-color: #00000020");
+        }
+    });
 }
 
 function activateColorBlindMode(colors) {
