@@ -67,7 +67,7 @@ To get last updates :
 ## Contribute
 Fork the project and submit a PR on the Github repo.
 
-You may use the Makefile to build and clean the files and folders.
+You may use the Makefile to build and clean the files and folders. Do not forget to update the `VERSION` file and bumpit to manifests with the command `make bump-all`.
 
 Technologies :
 - [Prettier](https://prettier.io/): Code formater
