@@ -7,6 +7,7 @@ const prodUrlColor = document.getElementById("prod-color");
 const stagingUrls = document.getElementById("staging-urls");
 const stagingUrlColor = document.getElementById("staging-color");
 const colorblindOption = document.getElementById("colorblind-option");
+const colorNavbars = document.getElementById("color-navbars")
 
 const defaultHighlightStyle = "background: lightgoldenrodyellow; font-weight: bold;";
 
@@ -46,6 +47,10 @@ currentBrowser.storage.sync.get("prodUrl", function (data) {
 currentBrowser.storage.sync.get("stagingUrl", function (data) {
     stagingUrls.value = data.stagingUrl ? data.stagingUrl.urls : "";
     stagingUrlColor.value = data.stagingUrl ? data.stagingUrl.color : defaultStagingColor;
+});
+
+currentBrowser.storage.sync.get("colorNavbars", function (data) {
+
 });
 
 currentBrowser.storage.sync.get("colors", function (data) {
@@ -101,6 +106,15 @@ function update() {
     var data = {};
     if (dags) data.dags = dags;
     if (style) data.highlightStyle = style;
+
+    const colorGroups = document.querySelectorAll('#color-navbars tbody tr');
+    for(colorGroup of colorGroups ) {
+        var id = colorGroup.cells["0"].innerText;
+        var name = document.getElementsByName("name"+id)["0"].value;
+        var urls = document.getElementsByName("urls"+id)["0"].value.split(",").map((url) => url.replace(" ", ""));
+        var color = document.getElementsByName("color"+id)["0"].value
+    }
+
     if (prodUrlsValues) data.prodUrl = { urls: prodUrlsValues, color: prodUrlColor.value };
     if (stagingUrlsValues)
         data.stagingUrl = {
@@ -108,7 +122,6 @@ function update() {
             color: stagingUrlColor.value,
         };
     data.colors = colors;
-
     currentBrowser.storage.sync.set(data, function () {
         show(successAlert);
         setTimeout(function () {
@@ -152,7 +165,34 @@ function resetStagingColorDefault() {
     stagingUrlColor.value = defaultStagingColor;
 }
 
+function addUrlRow() {
+    var table = document.getElementById("tab_logic");
+    var urlGroupNumber = table.rows.length;
+
+    var newRowHtml = "<td>"+ urlGroupNumber +"</td><td><input name='name"+urlGroupNumber+"' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='urls"+urlGroupNumber+"' type='text' placeholder='Urls'  class='form-control input-md'></td><td><input  name='color"+urlGroupNumber+"' type='color' placeholder='color'  class='form-control input-md'></td>"
+
+    var newRowTag = document.createElement('tr');
+    newRowTag.setAttribute('id', 'group' + urlGroupNumber);
+    newRowTag.innerHTML = newRowHtml;
+
+    // Get the table element by its ID and append the new row
+    table.appendChild(newRowTag);
+}
+
+function deleteUrlRow() {    
+    var table = document.getElementById('tab_logic');
+    var rowCount = table.rows.length;
+    if(rowCount > 2) {
+        table.deleteRow(rowCount -1);
+    }
+}
+
 // Update stored list of dags when validating form
+
+document.getElementById("add-row").addEventListener("click", addUrlRow);
+
+document.getElementById("delete-row").addEventListener("click", deleteUrlRow);
+
 document.getElementById("validate").addEventListener("click", update);
 
 document.getElementById("reset-highlight-default").addEventListener("click", resetHightlightDefault);

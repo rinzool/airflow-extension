@@ -95,6 +95,46 @@
 
                 <div class="container">
                     <!-- Prod Navbar -->
+                    <table id="color-navbars" class="table table-bordered table-hover" id="tab_logic">
+                        <thead>
+                            <tr >
+                                <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
+                                    Group Name
+                                </th>
+                                <th class="text-center">
+                                    URLs (CSV style)
+                                </th>
+                                <th class="text-center">
+                                    Navbar color
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id='group1'>
+                                <td>
+                                1
+                                </td>
+                                <td>
+                                <input type="text" name='name1'  placeholder='Name' class="form-control"/>
+                                </td>
+                                <td>
+                                <input type="text" name='urls1' placeholder='Urls' class="form-control"/>
+                                </td>
+                                <td>
+                                <input type="color" name='color1' placeholder='Color' class="form-control"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row float-right">
+                        <button id="delete-row" class="btn btn-danger m-2">-</button>
+                        <button id="add-row" class="btn btn-success m-2">+</button>
+                    </div>
+
                     <div class="row margin-top">
                         <div class="col-md-9">
                             <div class="form-group">
