@@ -48,7 +48,7 @@ function isAirflowInstance() {
 
 function highlightDags(dags, style) {
     let dagsElement = document.getElementsByClassName("dags-table-body")[0]
-    if (!dagsElement) return;
+    if (!dagsElement || (dags.length === 1 && dags[0] === "") ) return;
     for (let tr of dagsElement.children[0].children[1].children) {
         for (let dag of dags) {
             if (tr.children[1].innerText.includes(dag)) {
