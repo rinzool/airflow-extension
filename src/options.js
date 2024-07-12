@@ -2,10 +2,6 @@
 const successAlert = document.getElementById("success-alert");
 const dagsTextArea = document.getElementById("dags");
 const hightlightStyleInput = document.getElementById("highlight-dag-style");
-const prodUrls = document.getElementById("prod-urls");
-const prodUrlColor = document.getElementById("prod-color");
-const stagingUrls = document.getElementById("staging-urls");
-const stagingUrlColor = document.getElementById("staging-color");
 const colorblindOption = document.getElementById("colorblind-option");
 const colorNavbars = document.getElementById("color-navbars")
 
@@ -37,16 +33,6 @@ currentBrowser.storage.sync.get("dags", function (data) {
 
 currentBrowser.storage.sync.get("highlightStyle", function (data) {
     hightlightStyleInput.value = data.highlightStyle ? data.highlightStyle : defaultHighlightStyle;
-});
-
-currentBrowser.storage.sync.get("prodUrl", function (data) {
-    prodUrls.value = data.prodUrl ? data.prodUrl.urls : "";
-    prodUrlColor.value = data.prodUrl ? data.prodUrl.color : defaultProdColor;
-});
-
-currentBrowser.storage.sync.get("stagingUrl", function (data) {
-    stagingUrls.value = data.stagingUrl ? data.stagingUrl.urls : "";
-    stagingUrlColor.value = data.stagingUrl ? data.stagingUrl.color : defaultStagingColor;
 });
 
 currentBrowser.storage.sync.get("colorGroups", function (data) {
@@ -172,14 +158,6 @@ function resetColorsDefault() {
     }
 }
 
-function resetProdColorDefault() {
-    prodUrlColor.value = defaultProdColor;
-}
-
-function resetStagingColorDefault() {
-    stagingUrlColor.value = defaultStagingColor;
-}
-
 function addUrlRow(id, name="", urls=[], color="") {
     var table = document.getElementById("color-navbars")
     var lines = table.getElementsByTagName("tbody")[0];
@@ -212,10 +190,6 @@ document.getElementById("validate").addEventListener("click", update);
 document.getElementById("reset-highlight-default").addEventListener("click", resetHightlightDefault);
 
 document.getElementById("reset-colors-default").addEventListener("click", resetColorsDefault);
-
-document.getElementById("reset-prod-color-default").addEventListener("click", resetProdColorDefault);
-
-document.getElementById("reset-staging-color-default").addEventListener("click", resetStagingColorDefault);
 
 // Basic show/hide functions
 function hide(e) {
