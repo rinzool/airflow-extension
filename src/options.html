@@ -115,38 +115,16 @@
                         </tbody>
                     </table>
 
-                    <div class="row float-right">
-                        <button id="delete-row" class="btn btn-danger m-2">-</button>
-                        <button id="add-row" class="btn btn-success m-2">+</button>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Color blind option -->
-            <div id="colorblind-option">
-
-                <h2>Colorblind options</h2>
-                <a class="btn btn-primary" data-toggle="collapse" href="#collapseColorblind" role="button" aria-expanded="false" aria-controls="collapseColorblind">
-                    Colorblind Options
-                </a>
-                <p>Change the colors of task's states, whereas you're colorblind or not.</p>
-                <div class="collapse" id="collapseColorblind">
-                    <div class="card card-body">
-                        <div class="container">
-                            <div class="row margin-top">
-                                <div class="col-xl form-group">
-                                    <label>Colors for each task's state</label>
-                                    <small class="form-text text-muted">
-                                        <a id="reset-colors-default">Reset to default</a>
-                                    </small>
-                                    <table class="table" id="colors"></table>
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-end">
+                            <button id="delete-row" class="btn btn-danger m-2">-</button>
+                            <button id="add-row" class="btn btn-success m-2">+</button>
                         </div>
                     </div>
+
                 </div>
             </div>
+        </div>
         </div>
 
         <!-- Update button -->
@@ -155,7 +133,6 @@
                 <div style="margin-bottom: 20px; text-align: center">
                     <button class="btn btn-primary" id="validate">Update all</button>
                 </div>
-
                 <div id="success-alert" class="alert alert-info" style="display: none" role="alert">
                     Options successfuly updated
                 </div>

@@ -6,6 +6,7 @@ Compatible with Chrome and Firefox.
 This extension has been tested on the following Airflow versions:
 - 2.2.2
 - 2.6.3
+- 2.8.1
 
 This extension is not available on Chrome and Firefox stores. You'll need to build it yourself, you'll see how in the [Installation section](#installation).
 
@@ -28,13 +29,9 @@ It is possible to distinguish Airflow environment depending on URL to use a cust
 In settings section, it is possible to add a list of url (_csv format_) for prod and staging, and to define a dedicated 
 color. Urls can contain wildcards - e.g. `airflow-*.prod.*.mycompany.com`
 
-### Color Blind friendly
-
-It is possible to choose colors for each task state to use most appropriate set of colors depending on possible color blindness.
-
 ## Installation
 
-Clone repository where you want it, for example in your home.
+Clone repository where you want it, for example in your home directory.
 
 ```console
 git clone https://github.com/rinzool/airflow-extension.git ~/

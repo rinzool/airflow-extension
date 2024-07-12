@@ -2,27 +2,12 @@
 const successAlert = document.getElementById("success-alert");
 const dagsTextArea = document.getElementById("dags");
 const hightlightStyleInput = document.getElementById("highlight-dag-style");
-const colorblindOption = document.getElementById("colorblind-option");
 const colorNavbars = document.getElementById("color-navbars")
 
 const defaultHighlightStyle = "background: lightgoldenrodyellow; font-weight: bold;";
 
 const defaultProdColor = "#e06551";
 const defaultStagingColor = "#6693be";
-
-const defaultTasksColors = [
-    { state: "success", color: "#448102" },
-    { state: "running", color: "#7ae11d" },
-    { state: "up_for_retry", color: "#ffd700" },
-    { state: "scheduled", color: "#d2b48c" },
-    { state: "deferred", color: "#9370db" },
-    { state: "failed", color: "#ed4c1a" },
-    { state: "upstream_failed", color: "#f7a400" },
-    { state: "queued", color: "#808080" },
-    { state: "up_for_reschedule", color: "#67e1d0" },
-    { state: "skipped", color: "#f5bfcb" },
-    { state: "no_status", color: "#ffffff" },
-];
 
 var currentBrowser = typeof InstallTrigger !== "undefined" ? browser : chrome;
 
@@ -38,19 +23,6 @@ currentBrowser.storage.sync.get("highlightStyle", function (data) {
 currentBrowser.storage.sync.get("colorGroups", function (data) {
     var colorGroups = data.colorGroups;
     initColorGroupsTable(colorGroups);
-});
-
-currentBrowser.storage.sync.get("colors", function (data) {
-    const colors = {};
-    for (let i = 0; i < defaultTasksColors.length; i++) {
-        colors[defaultTasksColors[i].state] = defaultTasksColors[i].color;
-    }
-    if (data.colors) {
-        for (let i = 0; i < data.colors.length; i++) {
-            colors[data.colors[i].state] = data.colors[i].color;
-        }
-    }
-    displayColorsForm(colors);
 });
 
 // Display form
@@ -104,7 +76,6 @@ function update() {
 
     const dags = dagsTextArea.value.split(",").map((dag) => dag.replace(" ", ""));
     const style = hightlightStyleInput.value;
-    const colors = getColors();
     var data = {};
     if (dags) data.dags = dags;
     if (style) data.highlightStyle = style;
@@ -123,7 +94,6 @@ function update() {
     data.colorGroups = colorGroups;
 
 
-    data.colors = colors;
     currentBrowser.storage.sync.set(data, function () {
         show(successAlert);
         setTimeout(function () {
@@ -132,30 +102,9 @@ function update() {
     });
 }
 
-function getColors() {
-    let colors = [];
-
-    for (let i = 0; i < defaultTasksColors.length; i++) {
-        const state = defaultTasksColors[i].state;
-        const color = document.getElementById("color-" + state).value;
-        colors.push({ state: state, color: color });
-    }
-
-    return colors;
-}
-
 // Reset hightlight default style
 function resetHightlightDefault() {
     hightlightStyleInput.value = defaultHighlightStyle;
-}
-
-function resetColorsDefault() {
-    let colors = [];
-    currentBrowser.storage.sync.remove("colors");
-    for (let i = 0; i < defaultTasksColors.length; i++) {
-        const color = defaultTasksColors[i];
-        document.getElementById("color-" + color.state).value = color.color;
-    }
 }
 
 function addUrlRow(id, name="", urls=[], color="") {
@@ -188,8 +137,6 @@ document.getElementById("delete-row").addEventListener("click", deleteUrlRow);
 document.getElementById("validate").addEventListener("click", update);
 
 document.getElementById("reset-highlight-default").addEventListener("click", resetHightlightDefault);
-
-document.getElementById("reset-colors-default").addEventListener("click", resetColorsDefault);
 
 // Basic show/hide functions
 function hide(e) {

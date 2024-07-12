@@ -16,13 +16,6 @@ if (isAirflowInstance()) {
     currentBrowser.storage.sync.get("colorGroups", function (data) {
         colorNavBar(data.colorGroups)
     })
-
-    // Check if there is colorblind option
-    currentBrowser.storage.sync.get("colors", function (data) {
-        if (data.colors) {
-            activateColorBlindMode(data.colors);
-        }
-    });
 }
 
 function isAirflowInstance() {
