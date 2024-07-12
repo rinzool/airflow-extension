@@ -19,6 +19,7 @@ Open extension popup and then click on "_Settings_".
 
 In _settings_ page, define a list of DAGs name in _csv_ (_e.g. dag1,dag2,dag3_) in the textarea under "_List of dags to highlight_". 
 Then on Airflow UI _"DAGs"_ page, if a DAG name contains one of the name defined in option, the line will be highlighted.
+It is a contains rule, meaning if you write "my_dag", all dags containing "my_dag" will be highlighted ("a_my_dag", "my°dag_c")
 
 > It is possible to customize style applied to highlighted DAG's in _Option page_. You just need to change the CSS style.
 
@@ -31,7 +32,7 @@ color. Urls can contain wildcards - e.g. `airflow-*.prod.*.mycompany.com`
 
 ## Installation
 
-Clone repository where you want it, for example in your home directory.
+Clone repository where you want it, for example in your home director.
 
 ```console
 git clone https://github.com/rinzool/airflow-extension.git ~/

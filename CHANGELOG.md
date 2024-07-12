@@ -14,3 +14,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## Removed
 - Colorblind options
+
+## Fixed
+- Hightlight on DAGs
