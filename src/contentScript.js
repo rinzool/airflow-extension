@@ -14,8 +14,8 @@ if (isAirflowInstance()) {
     });
 
     currentBrowser.storage.sync.get("colorGroups", function (data) {
-        colorNavBar(data.colorGroups)
-    })
+        colorNavBar(data.colorGroups);
+    });
 }
 
 function isAirflowInstance() {
@@ -59,8 +59,7 @@ function colorNavBar(colorGroups) {
                 .setAttribute("style", "background-color: " + colorGroup.color + "!important");
             document
                 .getElementsByClassName("active")[0]
-                .children[0]
-                .setAttribute("style", "background-color: #00000020");
+                .children[0].setAttribute("style", "background-color: #00000020");
         }
     });
 }

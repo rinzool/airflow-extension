@@ -2,7 +2,7 @@
 const successAlert = document.getElementById("success-alert");
 const dagsTextArea = document.getElementById("dags");
 const hightlightStyleInput = document.getElementById("highlight-dag-style");
-const colorNavbars = document.getElementById("color-navbars")
+const colorNavbars = document.getElementById("color-navbars");
 
 const defaultHighlightStyle = "background: lightgoldenrodyellow; font-weight: bold;";
 
@@ -53,15 +53,13 @@ function displayColorsForm(colors) {
     }
 }
 
-
 function addEmptyUrlRow() {
-    const colorGroupsTag = document.getElementById("color-navbars").getElementsByTagName('tbody')[0].rows;
-    addUrlRow(colorGroupsTag.length +1);
+    const colorGroupsTag = document.getElementById("color-navbars").getElementsByTagName("tbody")[0].rows;
+    addUrlRow(colorGroupsTag.length + 1);
 }
 
-
 function initColorGroupsTable(colorGroups) {
-    if(colorGroups == undefined || colorGroups.length == 0) {
+    if (colorGroups == undefined || colorGroups.length == 0) {
         addEmptyUrlRow();
     } else {
         for (colorGroup of colorGroups) {
@@ -80,19 +78,21 @@ function update() {
     if (dags) data.dags = dags;
     if (style) data.highlightStyle = style;
 
-    const colorGroupsTag = document.getElementById("color-navbars").getElementsByTagName('tbody')[0].rows;
-    var colorGroups = []
-    for(colorGroupTag of colorGroupsTag) {
+    const colorGroupsTag = document.getElementById("color-navbars").getElementsByTagName("tbody")[0].rows;
+    var colorGroups = [];
+    for (colorGroupTag of colorGroupsTag) {
         var id = colorGroupTag.cells["0"].innerText;
-        var name = document.getElementsByName("name"+id)["0"].value;
-        var urls = document.getElementsByName("urls"+id)["0"].value.split(",").map((url) => url.replace(" ", ""));
-        var color = document.getElementsByName("color"+id)["0"].value
-        var colorGroup = {"id": id, "name": name, "urls": urls, "color": color}
-        colorGroups.push(colorGroup)
+        var name = document.getElementsByName("name" + id)["0"].value;
+        var urls = document
+            .getElementsByName("urls" + id)
+            ["0"].value.split(",")
+            .map((url) => url.replace(" ", ""));
+        var color = document.getElementsByName("color" + id)["0"].value;
+        var colorGroup = { id: id, name: name, urls: urls, color: color };
+        colorGroups.push(colorGroup);
     }
 
     data.colorGroups = colorGroups;
-
 
     currentBrowser.storage.sync.set(data, function () {
         show(successAlert);
@@ -107,24 +107,39 @@ function resetHightlightDefault() {
     hightlightStyleInput.value = defaultHighlightStyle;
 }
 
-function addUrlRow(id, name="", urls=[], color="") {
-    var table = document.getElementById("color-navbars")
+function addUrlRow(id, name = "", urls = [], color = "") {
+    var table = document.getElementById("color-navbars");
     var lines = table.getElementsByTagName("tbody")[0];
 
-    var newRowHtml = "<td>"+ id +"</td><td><input name='name" + id + "' value='" + name + "' type='text' placeholder='Name' class='form-control input-md'/> </td><td><input  name='urls" + id + "' value='" + urls + "'type='text' placeholder='Urls'  class='form-control input-md'></td><td><input  name='color" + id + "' value='" + color + "' type='color' placeholder='color'  class='form-control input-md'></td>"
+    var newRowHtml =
+        "<td>" +
+        id +
+        "</td><td><input name='name" +
+        id +
+        "' value='" +
+        name +
+        "' type='text' placeholder='Name' class='form-control input-md'/> </td><td><input  name='urls" +
+        id +
+        "' value='" +
+        urls +
+        "'type='text' placeholder='Urls'  class='form-control input-md'></td><td><input  name='color" +
+        id +
+        "' value='" +
+        color +
+        "' type='color' placeholder='color'  class='form-control input-md'></td>";
 
-    var newRowTag = document.createElement('tr');
-    newRowTag.setAttribute('id', 'group' + id);
+    var newRowTag = document.createElement("tr");
+    newRowTag.setAttribute("id", "group" + id);
     newRowTag.innerHTML = newRowHtml;
 
     lines.appendChild(newRowTag);
 }
 
-function deleteUrlRow() {    
+function deleteUrlRow() {
     var table = document.getElementById("color-navbars");
     var rowCount = table.rows.length;
-    if(rowCount > 2) {
-        table.deleteRow(rowCount -1);
+    if (rowCount > 2) {
+        table.deleteRow(rowCount - 1);
     }
 }
 
