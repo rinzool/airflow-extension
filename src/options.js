@@ -6,9 +6,6 @@ const colorNavbars = document.getElementById("color-navbars");
 
 const defaultHighlightStyle = "background: lightgoldenrodyellow; font-weight: bold;";
 
-const defaultProdColor = "#e06551";
-const defaultStagingColor = "#6693be";
-
 var currentBrowser = typeof InstallTrigger !== "undefined" ? browser : chrome;
 
 // Fetch stored dags
@@ -70,7 +67,6 @@ function initColorGroupsTable(colorGroups) {
 
 // Update options
 function update() {
-    hide(successAlert);
 
     const dags = dagsTextArea.value.split(",").map((dag) => dag.replace(" ", ""));
     const style = hightlightStyleInput.value;
@@ -95,9 +91,17 @@ function update() {
     data.colorGroups = colorGroups;
 
     currentBrowser.storage.sync.set(data, function () {
-        show(successAlert);
+        var triggerButton = document.getElementById("validate");
+
+        triggerButton.disabled = true;
+        triggerButton.textContent = "Configuration updated";
+        triggerButton.classList.remove("btn-primary");
+        triggerButton.classList.add("btn-success");
         setTimeout(function () {
-            hide(successAlert);
+            triggerButton.disabled = false;
+            triggerButton.textContent = "Update all";
+            triggerButton.classList.remove("btn-success");
+            triggerButton.classList.add("btn-primary");
         }, 2000);
     });
 }
@@ -152,15 +156,6 @@ document.getElementById("delete-row").addEventListener("click", deleteUrlRow);
 document.getElementById("validate").addEventListener("click", update);
 
 document.getElementById("reset-highlight-default").addEventListener("click", resetHightlightDefault);
-
-// Basic show/hide functions
-function hide(e) {
-    e.setAttribute("style", "display: none");
-}
-
-function show(e) {
-    e.setAttribute("style", "display: block");
-}
 
 // Update when enter
 document.addEventListener("keypress", function (e) {
