@@ -1,12 +1,27 @@
 # Airflow Extension
 
 Browser Extension to improve Airflow UI User Experience.
+<!-- TOC -->
+
+- [Airflow Extension](#airflow-extension)
+    - [Features](#features)
+        - [Highlight DAGs](#highlight-dags)
+        - [Color Navbar depending on environment](#color-navbar-depending-on-environment)
+    - [Installation](#installation)
+        - [Chrome](#chrome)
+        - [Firefox](#firefox)
+    - [Updates](#updates)
+    - [Contribute](#contribute)
+    - [Author](#author)
+
+<!-- /TOC -->
 
 Compatible with Chrome and Firefox.
 This extension has been tested on the following Airflow versions:
 - 2.2.2
 - 2.6.3
 - 2.8.1
+- 2.9.2
 
 This extension is not available on Chrome and Firefox stores. You'll need to build it yourself, you'll see how in the [Installation section](#installation).
 
