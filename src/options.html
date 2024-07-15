@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <link
@@ -94,63 +94,22 @@
                 <p>Change the color of the Airflow navbar, useful when working on multiple environments.</p>
 
                 <div class="container">
-                    <!-- Prod Navbar -->
-                    <div class="row margin-top">
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <label for="prod-urls">List of <strong>prod</strong> urls:</label>
-                                <textarea class="form-control" id="prod-urls"></textarea>
-                                <small class="form-text text-muted">Use <em>csv</em> without https. Ex: url1.fr,url2.com</small>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="prod-color">Prod bar color:</label><br />
-                                <input type="color" name="prod-color" id="prod-color" />
-                                <br />
-                                <small class="form-text text-muted">
-                                    <a id="reset-prod-color-default">Reset to default</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
+                    <table id="color-navbars" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Group Name</th>
+                                <th class="text-center">URLs (CSV style)</th>
+                                <th class="text-center">Navbar color</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
 
-                    <!-- Staging Navbar -->
-                    <div class="row margin-top">
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <label for="staging-urls">List of <strong>staging</strong> urls:</label>
-                                <textarea class="form-control" id="staging-urls"></textarea>
-                                <small class="form-text text-muted">Use <em>csv</em> without https. Ex: url1.fr,url2.com</small>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="staging-color">Staging bar color:</label><br />
-                                <input type="color" name="staging-color" id="staging-color" />
-                                <br />
-                                <small class="form-text text-muted">
-                                    <a id="reset-staging-color-default">Reset to default</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Color blind option -->
-            <div id="colorblind-option">
-                <h2>Colorblind options</h2>
-                <p>Change the colors of task's states, whereas you're colorblind or not.</p>
-
-                <div class="container">
-                    <div class="row margin-top">
-                        <div class="col-xl form-group">
-                            <label>Colors for each task's state</label>
-                            <small class="form-text text-muted">
-                                <a id="reset-colors-default">Reset to default</a>
-                            </small>
-                            <table class="table" id="colors"></table>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-end">
+                            <button id="delete-row" class="btn btn-danger m-2">-</button>
+                            <button id="add-row" class="btn btn-success m-2">+</button>
                         </div>
                     </div>
                 </div>
@@ -158,15 +117,9 @@
         </div>
 
         <!-- Update button -->
-        <div class="row" style="margin-top: 30px">
-            <div class="col-xl">
-                <div style="margin-bottom: 20px; text-align: center">
-                    <button class="btn btn-primary" id="validate">Update all</button>
-                </div>
-
-                <div id="success-alert" class="alert alert-info" style="display: none" role="alert">
-                    Options successfuly updated
-                </div>
+        <div class="container mt-5" style="margin-top: 30px">
+            <div style="margin-bottom: 20px; text-align: center">
+                <button class="btn btn-primary" id="validate">Update all</button>
             </div>
         </div>
         <script src="options.js"></script>

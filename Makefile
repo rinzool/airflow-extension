@@ -3,10 +3,12 @@ BROWSERS = chrome firefox
 BUILDS := $(patsubst %, build-%,$(BROWSERS))
 COPIES := $(patsubst %, copy-%,$(BROWSERS))
 CLEANS := $(patsubst %, clean-%,$(BROWSERS))
+BUMP_VERSIONS := $(patsubst %, bump-version-%,$(BROWSERS))
 
-.PHONY: $(COPIES) $(CLEANS) $(BUILDS)\
+.PHONY: $(COPIES) $(CLEANS) $(BUILDS) $(BUMP_VERSIONS)\
 	build-all\
-	format-all
+	format-all\
+	bump-all
 
 $(CLEANS): clean-%:
 	@echo Cleaning $* folder...
@@ -19,6 +21,11 @@ $(COPIES): copy-%: clean-%
 	@cp -r images $*
 	@echo ... Copy Done
 
+$(BUMP_VERSIONS): bump-version-%:
+	@tmp=$(mktemp)
+	@version=$(cat VERSION)
+	@jq '.version = "'$$(< VERSION)'"' $*/manifest.json > "$tmp" && mv "$tmp" $*/manifest.json
+
 build-chrome: copy-chrome
 
 build-firefox: copy-firefox
@@ -29,6 +36,8 @@ build-firefox: copy-firefox
 clean-all: $(CLEANS)
 
 build-all: $(BUILDS)
+
+bump-all: $(BUMP_VERSIONS)
 
 format-all:
 	@echo Formatting src files...

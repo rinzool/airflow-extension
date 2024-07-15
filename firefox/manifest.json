@@ -1,40 +1,37 @@
 {
   "manifest_version": 2,
   "name": "Airflow Extension",
-  "version": "1.7.0",
-
+  "version": "1.8.0",
   "description": "Automatically generates commands from airflow UI and improve it",
   "homepage_url": "https://github.com/rinzool/airflow-run-extension",
   "options_ui": {
     "page": "options.html",
     "browser_style": true
   },
-
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
     }
   ],
-
-
   "browser_specific_settings": {
     "gecko": {
       "id": "airflow@extension.com",
       "strict_min_version": "53.0"
     }
   },
-
   "icons": {
     "128": "images/logo.png"
   },
-
-  "permissions":[
+  "permissions": [
     "activeTab",
     "clipboardWrite",
     "storage"
   ],
-
   "browser_action": {
     "default_icon": "images/logo.png",
     "default_title": "Airflow utils",
